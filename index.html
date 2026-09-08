@@ -15,7 +15,6 @@
             --table-green: #0a4f1e;
             --text-main: #f0f0f0;
             --chip-outline: #fff;
-            --comp-cyan: #00e5ff;
         }
 
         body.vip-mode {
@@ -77,7 +76,7 @@
             padding: 15px 20px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #333; flex-wrap: wrap; gap: 10px;
         }
         .balance-label { color: #888; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        .balance-display { font-size: 2.2rem; font-weight: 700; color: var(--gold-light); font-family: 'Playfair Display', serif; display:inline-block; }
+        .balance-display { font-size: 2.2rem; font-weight: 700; color: var(--gold-light); font-family: 'Playfair Display', serif; }
 
         .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
         .game-card {
@@ -141,7 +140,7 @@
         .bet-value { color: var(--gold-light); font-weight: bold; font-size: 1.2rem; pointer-events: none; }
 
         /* ==========================================
-           Roulette specific (完全修正: アウトサイド確実タップ)
+           Roulette specific
            ========================================== */
         .roulette-container { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; }
         .r-wheel-frame { width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, #4a2500 0%, #291400 80%, #000 100%); padding: 15px; position: relative; box-sizing: border-box; box-shadow: 0 15px 30px rgba(0,0,0,0.8), inset 0 5px 15px rgba(0,0,0,0.9); border: 4px solid #111; margin-bottom: 10px; }
@@ -151,46 +150,16 @@
         .r-wheel-center-deco { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: radial-gradient(circle, #fbc02d, #f57f17); border-radius: 50%; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 10; }
         .r-wheel-center-txt { font-size: 24px; font-weight: 900; color: #111; text-shadow: 1px 1px 0px rgba(255,255,255,0.6); }
         .r-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); color: var(--gold-light); font-size: 32px; z-index: 20; text-shadow: 0 5px 10px rgba(0,0,0,0.9); }
-        
         .r-board-wrapper { width: 100%; padding: 10px 0 20px 0; display: flex; justify-content: center; box-sizing: border-box; }
-        .r-board { 
-            display: grid; width: 100%; max-width: 800px; 
-            grid-template-columns: 1.2fr repeat(12, 1fr) 1.2fr; 
-            grid-template-rows: repeat(3, minmax(28px, 45px)) minmax(25px, 40px) minmax(25px, 40px); 
-            background: #11682b; border-radius: 8px; border: 2px solid var(--gold-dark); 
-            gap: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.5); padding: 4px; box-sizing: border-box; 
-        }
-        .r-cell { 
-            border: 1px solid rgba(255,255,255,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            cursor: pointer; position: relative; color: #fff; font-weight: bold; font-family: 'Arial', sans-serif; user-select: none; 
-            box-sizing: border-box; pointer-events: auto !important;
-        }
+        .r-board { display: grid; width: 100%; max-width: 800px; grid-template-columns: 1.2fr repeat(12, 1fr) 1.2fr; grid-template-rows: repeat(3, minmax(28px, 45px)) minmax(25px, 40px) minmax(25px, 40px); background: #11682b; border-radius: 8px; border: 2px solid var(--gold-dark); gap: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.5); padding: 4px; box-sizing: border-box; }
+        .r-cell { border: 1px solid rgba(255,255,255,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; position: relative; color: #fff; font-weight: bold; font-family: 'Arial', sans-serif; user-select: none; box-sizing: border-box; }
         .r-cell:hover { background: rgba(255,255,255,0.2); }
-        
-        .r-num-oval { 
-            width: 80%; height: 85%; max-height: 45px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; pointer-events: none; 
-        }
-        .r-red-oval { background: #d32f2f; } 
-        .r-black-oval { background: #111; }
-        
-        .r-zero-oval { 
-            width: 60%; height: 80%; max-height: 100px; border-radius: 50%; border: 2px solid #fff; 
-            display: flex; align-items: center; justify-content: center; pointer-events: none; 
-        }
-        
-        .r-num-txt { font-size: clamp(0.7rem, 2.2vw, 1.3rem); transform: rotate(-90deg); pointer-events: none; font-weight: 900;}
-        .r-txt-rot { transform: rotate(-90deg); font-size: clamp(0.55rem, 1.6vw, 0.9rem); letter-spacing: 0.5px; text-align: center; pointer-events: none; }
-        .r-cell-txt { font-size: clamp(0.55rem, 1.8vw, 1rem); letter-spacing: -0.5px; text-align: center; pointer-events: none; }
-
-        .r-placed-chip { 
-            position: absolute; width: clamp(16px, 3.5vw, 34px); height: clamp(16px, 3.5vw, 34px); border-radius: 50%; color: #000; 
-            font-size: clamp(0.45rem, 1vw, 0.65rem); font-weight: 900; 
-            display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.6), inset 0 0 3px rgba(0,0,0,0.8); 
-            letter-spacing: -0.5px; pointer-events: none; z-index: 10; 
-            background: radial-gradient(circle at center, #ffffff 0%, #ffffff 38%, #cccccc 40%, var(--c-main) 43%, var(--c-main) 100%); 
-            border: 2px dashed var(--c-edge); transform: translate(-50%, -50%); 
-        }
+        .r-num-oval { width: 80%; height: 80%; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: clamp(0.6rem, 2.5vw, 1.2rem); transform: rotate(-90deg); pointer-events: none; }
+        .r-red-oval { background: #d32f2f; } .r-black-oval { background: #111; }
+        .r-zero-oval { width: 50%; height: 80%; border-radius: 50%; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; font-size: clamp(0.7rem, 2.5vw, 1.4rem); transform: rotate(-90deg); pointer-events: none; }
+        .r-txt-rot { transform: rotate(-90deg); font-size: clamp(0.5rem, 1.5vw, 0.85rem); letter-spacing: 0.5px; text-align: center; pointer-events: none;}
+        .r-cell-txt { font-size: clamp(0.55rem, 1.8vw, 1rem); letter-spacing: -0.5px; text-align: center; pointer-events: none;}
+        .r-placed-chip { position: absolute; width: clamp(16px, 3.5vw, 34px); height: clamp(16px, 3.5vw, 34px); border-radius: 50%; color: #000; font-size: clamp(0.45rem, 1vw, 0.65rem); font-weight: 900; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.6), inset 0 0 3px rgba(0,0,0,0.8); letter-spacing: -0.5px; pointer-events: none; z-index: 10; background: radial-gradient(circle at center, #ffffff 0%, #ffffff 38%, #cccccc 40%, var(--c-main) 43%, var(--c-main) 100%); border: 2px dashed var(--c-edge); transform: translate(-50%, -50%); }
 
         /* ==========================================
            Video Poker Machine UI
@@ -220,65 +189,10 @@
         
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
-        
-        .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center; flex-direction:column; }
-        
-        .inventory-pill {
-            background: rgba(255,255,255,0.08); border: 1px solid #555;
-            padding: 6px 12px; border-radius: 20px; font-size: 0.9rem;
-            color: #eee; display: inline-block; margin-bottom: 5px;
-        }
     </style>
 </head>
 <body>
 
-    <!-- 🏦 専用ATMモーダル (入金/引出) -->
-    <div id="atm-modal" class="modal-overlay">
-        <div class="panel" style="max-width:400px; width:90%; text-align:center; animation: fadeIn 0.3s ease-out;">
-            <h2 style="color:var(--gold-light); margin-bottom:10px; border-bottom:none;">CASHIER ATM</h2>
-            <p style="color:#aaa; font-size:0.9rem;">入金(DEPOSIT)または引出(WITHDRAW)する金額</p>
-            <div style="margin:25px 0;">
-                <span id="atm-sym" style="font-size:2rem; color:var(--gold); vertical-align:middle; margin-right:10px;">$</span>
-                <input type="number" id="atm-input" value="10000" min="1" style="width:200px; font-size:2rem;">
-            </div>
-            <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
-                <button onclick="closeAtm()" class="btn-outline" style="font-size:1rem; padding:10px 20px;">CANCEL</button>
-                <button onclick="confirmAtm('withdraw')" class="btn-outline" style="font-size:1rem; padding:10px 20px; border-color:#4caf50; color:#4caf50;">WITHDRAW</button>
-                <button onclick="confirmAtm('deposit')" class="btn-danger" style="font-size:1rem; padding:10px 20px;">DEPOSIT</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 💾 セーブ＆ロードモーダル -->
-    <div id="saveload-modal" class="modal-overlay">
-        <div class="panel" style="max-width:500px; width:90%; text-align:center; animation: fadeIn 0.3s ease-out;">
-            <h2 id="saveload-title" style="color:var(--gold-light); margin-bottom:10px; border-bottom:none;">SAVE GAME</h2>
-            <div id="saveload-slots" style="display:flex; flex-direction:column; gap:10px; margin:20px 0;"></div>
-            <button onclick="closeSaveLoad()" class="btn-outline" style="font-size:1.1rem; padding:12px 30px;">CANCEL</button>
-        </div>
-    </div>
-
-    <!-- 🛒 コンプショップモーダル (全32種) -->
-    <div id="shop-modal" class="modal-overlay">
-        <div class="panel" style="max-width:580px; width:95%; text-align:center; animation: fadeIn 0.3s ease-out; max-height:85vh; overflow-y:auto;">
-            <h2 style="color:var(--comp-cyan); margin-bottom:10px; border-bottom:none;">VIP COMP REWARDS</h2>
-            <p style="color:#aaa; font-size:0.9rem;">ゲームで溜まったCP(コンプポイント)をカジノリゾート公式特典と交換できます。<br>※VIPルームは獲得CPが3倍になります。</p>
-            
-            <div style="background:#111; border:1px solid #333; padding:15px; border-radius:8px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
-                <span style="color:#888; font-weight:bold;">YOUR CP:</span>
-                <span id="shop-cp-display" style="font-size:1.8rem; color:var(--comp-cyan); font-weight:900;">0 CP</span>
-            </div>
-
-            <div id="shop-items-list" style="margin-bottom:20px;"></div>
-            
-            <h3 style="font-size:1.2rem; color:var(--gold); text-align:left; border-bottom:1px solid #333; padding-bottom:5px;">Your Rewards & Items</h3>
-            <div id="shop-inventory" style="text-align:left; margin-bottom:20px; min-height:40px;"></div>
-
-            <button onclick="closeShop()" class="btn-outline" style="font-size:1.1rem; padding:12px 40px; width:100%;">CLOSE SHOP</button>
-        </div>
-    </div>
-
-    <!-- Intro -->
     <div id="intro-screen" class="screen active panel" style="max-width: 600px; text-align: center; margin-top: 10vh;">
         <h1 style="font-size: 3.5rem;">G.R.C</h1>
         <h2 style="border: none; margin-bottom: 5px;">Grand Royal Casino</h2>
@@ -291,27 +205,17 @@
                 <option value="EUR">EUR (€)</option>
             </select><br><br>
             <button onclick="enterCasino()" style="font-size: 1.3rem; padding: 15px 50px; width: 100%; max-width: 300px;">ENTER CASINO</button><br><br>
-            <button onclick="openSaveLoad('load')" class="btn-outline" style="font-size: 0.9rem; padding: 8px 20px;">データをロード (Load Game)</button>
+            <button onclick="loadGame()" class="btn-outline" style="font-size: 0.9rem; padding: 8px 20px;">前回のデータをロード</button>
         </div>
     </div>
 
-    <!-- Lobby -->
     <div id="lobby-screen" class="screen">
         <div class="status-bar">
-            <div style="flex:1;">
-                <div class="balance-label">Total Balance</div>
-                <div class="balance-display" id="lobby-balance">$0.00</div>
-            </div>
-            <div style="flex:1; text-align:right;">
-                <div class="balance-label">COMP POINTS</div>
-                <div class="balance-display" id="lobby-comp" style="color:var(--comp-cyan);">0 CP</div>
-            </div>
-            <div style="width:100%; display: flex; gap: 10px; flex-wrap: wrap; margin-top:10px;">
-                <button onclick="openAtm()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px; border-color:var(--gold); color:var(--gold-light);">💵 ATM (Deposit/Withdraw)</button>
-                <button onclick="openShop()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px; border-color:var(--comp-cyan); color:var(--comp-cyan);">🛒 COMP REWARDS</button>
+            <div><div class="balance-label">Total Balance</div><div class="balance-display" id="lobby-balance">$0.00</div></div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                 <button onclick="toggleMute()" class="btn-outline btn-mute" style="font-size: 0.8rem; padding: 8px 15px; border-color:#888;">🔊 SOUND ON</button>
                 <button onclick="toggleCurrency()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px;">通貨切替</button>
-                <button onclick="openSaveLoad('save')" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px;">SAVE</button>
+                <button onclick="saveGame()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px;">SAVE</button>
             </div>
         </div>
         
@@ -333,19 +237,10 @@
         </div>
     </div>
 
-    <!-- Play Screen -->
     <div id="play-screen" class="screen">
         <div class="status-bar">
-            <div style="flex:1;">
-                <div class="balance-label">Current Balance</div>
-                <div class="balance-display" id="play-balance">$0.00</div>
-            </div>
-            <div style="flex:1; text-align:right;">
-                <div class="balance-label">COMP POINTS</div>
-                <div class="balance-display" id="play-comp" style="color:var(--comp-cyan);">0 CP</div>
-            </div>
-            <div style="width:100%; display: flex; gap: 10px; margin-top:10px;">
-                <button onclick="openAtm()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px; border-color:var(--gold); color:var(--gold-light);">💵 ATM</button>
+            <div><div class="balance-label">Current Balance</div><div class="balance-display" id="play-balance">$0.00</div></div>
+            <div style="display: flex; gap: 10px;">
                 <button onclick="toggleMute()" class="btn-outline btn-mute" style="font-size: 0.8rem; padding: 8px 15px; border-color:#888;">🔊 SOUND ON</button>
                 <button onclick="returnToLobby()" class="btn-outline">◀ ロビーへ</button>
             </div>
@@ -359,23 +254,18 @@
         </div>
     </div>
 
-    <!-- Result Screen -->
     <div id="result-screen" class="screen panel" style="text-align:center;">
         <h1>CASH OUT RESULT</h1>
         <h2 id="final-result-msg" style="border:none; margin: 20px 0; font-size:2.5rem;"></h2>
         
-        <div style="display:flex; justify-content:center; gap: 20px; margin:30px 0; flex-wrap:wrap;">
-            <div style="background:rgba(0,0,0,0.5); padding:15px; border-radius:12px; border:1px solid #333; min-width:160px;">
-                <div style="color:#aaa; font-size:0.8rem; letter-spacing:1px; margin-bottom:5px;">TOTAL DEPOSIT</div>
-                <div id="initial-balance-disp" style="font-size:1.5rem; color:#fff;"></div>
+        <div style="display:flex; justify-content:center; gap: 40px; margin:30px 0; flex-wrap:wrap;">
+            <div style="background:rgba(0,0,0,0.5); padding:20px; border-radius:12px; border:1px solid #333; min-width:200px;">
+                <div style="color:#aaa; font-size:0.9rem; letter-spacing:1px; margin-bottom:5px;">INITIAL DEPOSIT</div>
+                <div id="initial-balance-disp" style="font-size:2rem; color:#fff;"></div>
             </div>
-            <div style="background:rgba(0,0,0,0.5); padding:15px; border-radius:12px; border:1px solid #333; min-width:160px;">
-                <div style="color:#aaa; font-size:0.8rem; letter-spacing:1px; margin-bottom:5px;">TOTAL WITHDRAWN</div>
-                <div id="withdrawn-balance-disp" style="font-size:1.5rem; color:#4caf50;"></div>
-            </div>
-            <div style="background:rgba(0,0,0,0.5); padding:15px; border-radius:12px; border:1px solid var(--gold-dark); min-width:160px;">
-                <div style="color:#aaa; font-size:0.8rem; letter-spacing:1px; margin-bottom:5px;">FINAL BALANCE</div>
-                <div id="final-balance-disp" style="font-size:2rem; color:var(--gold-light); font-family:'Playfair Display',serif; font-weight:bold;"></div>
+            <div style="background:rgba(0,0,0,0.5); padding:20px; border-radius:12px; border:1px solid var(--gold-dark); min-width:200px;">
+                <div style="color:#aaa; font-size:0.9rem; letter-spacing:1px; margin-bottom:5px;">FINAL BALANCE</div>
+                <div id="final-balance-disp" style="font-size:2.5rem; color:var(--gold-light); font-family:'Playfair Display',serif; font-weight:bold;"></div>
             </div>
         </div>
 
@@ -390,7 +280,7 @@
     </div>
 
     <script>
-        let state = { bal: 0, cur: 'USD', history: [], totalDeposit: 0, totalWithdrawn: 0, comp: 0, items: [] };
+        let state = { bal: 0, cur: 'USD', history: [] };
         const rate = 0.92;
         let isAnim = false;
         let selChip = 10; 
@@ -421,278 +311,43 @@
             let str = sym + v.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
             document.getElementById('lobby-balance').innerText = str;
             document.getElementById('play-balance').innerText = str;
-            
-            let cpStr = Math.floor(state.comp).toLocaleString() + " CP";
-            if(document.getElementById('lobby-comp')) document.getElementById('lobby-comp').innerText = cpStr;
-            if(document.getElementById('play-comp')) document.getElementById('play-comp').innerText = cpStr;
         }
 
         function recordHistory() { state.history.push(state.bal); }
 
         function enterCasino() {
             let d = parseFloat(document.getElementById('initial-deposit').value);
-            if (isNaN(d) || d <= 0) {
-                document.getElementById('initial-deposit').value = "";
-                document.getElementById('initial-deposit').placeholder = "Invalid!";
-                return;
-            }
+            if (isNaN(d) || d <= 0) return alert("正しい金額を入力してください。");
             state.cur = document.getElementById('initial-currency').value;
             state.bal = (state.cur === 'USD') ? d : d / rate;
-            state.totalDeposit = state.bal; 
-            state.totalWithdrawn = 0;
             state.history = [state.bal]; 
-            
             isMuted = false; document.querySelectorAll('.btn-mute').forEach(b => b.innerText = '🔊 SOUND ON'); updateBgm();
             switchScreen('lobby-screen'); updateUI();
-        }
-
-        // ==========================================
-        // セーブ＆ロードスロット機能
-        // ==========================================
-        let saveLoadMode = 'save';
-        function openSaveLoad(mode) {
-            if(isAnim) return;
-            saveLoadMode = mode;
-            document.getElementById('saveload-title').innerText = mode === 'save' ? 'SAVE GAME' : 'LOAD GAME';
-            renderSlots();
-            document.getElementById('saveload-modal').style.display = 'flex';
-        }
-
-        function closeSaveLoad() {
-            document.getElementById('saveload-modal').style.display = 'none';
-        }
-
-        function renderSlots() {
-            let html = '';
-            for(let i=1; i<=3; i++) {
-                let s = localStorage.getItem('grc_v25_save_' + i);
-                if(s) {
-                    let data = JSON.parse(s);
-                    let dateStr = new Date(data.timestamp || Date.now()).toLocaleString();
-                    let sym = data.cur === 'USD' ? '$' : '€';
-                    let bal = data.cur === 'USD' ? data.bal : data.bal * rate;
-                    html += `<button class="btn-outline" style="text-align:left; padding:15px; border-color:#555;" onclick="executeSaveLoad(${i})">
-                                <div style="color:var(--gold); font-weight:bold;">SLOT ${i}</div>
-                                <div style="font-size:0.9rem; color:#ccc;">${dateStr} | ${sym}${bal.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})} | ${Math.floor(data.comp || 0)} CP</div>
-                             </button>`;
-                } else {
-                    html += `<button class="btn-outline" style="text-align:center; padding:15px; border-color:#333; color:#555;" onclick="executeSaveLoad(${i})">
-                                <div style="font-weight:bold;">SLOT ${i} - EMPTY</div>
-                             </button>`;
-                }
-            }
-            document.getElementById('saveload-slots').innerHTML = html;
-        }
-
-        function executeSaveLoad(slot) {
-            if(saveLoadMode === 'save') {
-                state.timestamp = Date.now();
-                localStorage.setItem('grc_v25_save_' + slot, JSON.stringify(state));
-                alert(`スロット ${slot} にセーブしました。`);
-                closeSaveLoad();
-            } else {
-                let s = localStorage.getItem('grc_v25_save_' + slot);
-                if(s) {
-                    state = JSON.parse(s);
-                    if(!state.history) state.history = [state.bal]; 
-                    if(state.totalDeposit === undefined) state.totalDeposit = state.history[0]; 
-                    if(state.totalWithdrawn === undefined) state.totalWithdrawn = 0; 
-                    if(state.comp === undefined) state.comp = 0;
-                    if(state.items === undefined) state.items = [];
-                    
-                    isMuted = false; document.querySelectorAll('.btn-mute').forEach(b => b.innerText = '🔊 SOUND ON'); updateBgm();
-                    closeSaveLoad();
-                    switchScreen('lobby-screen'); updateUI(); 
-                } else {
-                    alert("このスロットにはデータがありません。");
-                }
-            }
-        }
-
-        // ==========================================
-        // ATMモーダル処理 (DEPOSIT & WITHDRAW)
-        // ==========================================
-        function openAtm() {
-            if(isAnim) return;
-            let sym = state.cur === 'USD' ? '$' : '€';
-            document.getElementById('atm-sym').innerText = sym;
-            document.getElementById('atm-input').value = 10000;
-            document.getElementById('atm-modal').style.display = 'flex';
-        }
-
-        function closeAtm() {
-            document.getElementById('atm-modal').style.display = 'none';
-        }
-
-        function confirmAtm(action) {
-            let val = parseFloat(document.getElementById('atm-input').value);
-            if (isNaN(val) || val <= 0) {
-                document.getElementById('atm-input').value = "";
-                document.getElementById('atm-input').placeholder = "Invalid!";
-                return;
-            }
-
-            let usdAmt = state.cur === 'USD' ? val : val / rate;
-            let sym = state.cur === 'USD' ? '$' : '€';
-
-            if (action === 'deposit') {
-                state.bal += usdAmt;
-                state.totalDeposit += usdAmt;
-                recordHistory();
-                updateUI();
-                
-                document.querySelectorAll('.balance-display').forEach(el => {
-                    el.style.color = '#4caf50'; el.style.transform = 'scale(1.1)'; el.style.transition = 'all 0.3s';
-                    setTimeout(() => { el.style.color = 'var(--gold-light)'; el.style.transform = 'scale(1)'; }, 500);
-                });
-                alert(`${sym}${val.toLocaleString()} を追加投入しました！`);
-            
-            } else if (action === 'withdraw') {
-                if (usdAmt > state.bal) {
-                    alert("残高が不足しています！");
-                    return;
-                }
-                state.bal -= usdAmt;
-                state.totalWithdrawn += usdAmt;
-                recordHistory();
-                updateUI();
-                
-                document.querySelectorAll('.balance-display').forEach(el => {
-                    el.style.color = '#e53935'; el.style.transform = 'scale(0.9)'; el.style.transition = 'all 0.3s';
-                    setTimeout(() => { el.style.color = 'var(--gold-light)'; el.style.transform = 'scale(1)'; }, 500);
-                });
-                alert(`${sym}${val.toLocaleString()} を引き出しました！`);
-            }
-
-            closeAtm();
-        }
-
-        // ==========================================
-        // COMP SHOP システム (全32種・完全合法＆リゾート仕様)
-        // ==========================================
-        const SHOP_ITEMS = [
-            { name: "ミネラルウォーター＆特製ミント", cost: 5, icon: "💧" },
-            { name: "カクテルサービス", cost: 10, icon: "🍸" },
-            { name: "カジノ記念ダイス（特製ケース入）", cost: 20, icon: "🎲" },
-            { name: "カジノ特製プレイングカード", cost: 35, icon: "🃏" },
-            { name: "プレミアム・シガー", cost: 50, icon: "🚬" },
-            { name: "カフェラウンジ コーヒー＆スイーツ", cost: 75, icon: "☕" },
-            { name: "カジノリゾート特製キャップ", cost: 100, icon: "🧢" },
-            { name: "VIPラウンジ カクテルアワーパス", cost: 150, icon: "🍷" },
-            { name: "高級ビュッフェディナー券", cost: 250, icon: "🍽️" },
-            { name: "特製メタルカードケース", cost: 350, icon: "💳" },
-            { name: "プロ仕様ポーカーチップセット", cost: 500, icon: "🧳" },
-            { name: "リゾートプール カバナ終日利用権", cost: 750, icon: "🏖️" },
-            { name: "VIP専用サロン フルアクセスパス", cost: 1000, icon: "🗝️" },
-            { name: "極上リラクゼーションスパ 90分コース", cost: 1500, icon: "💆" },
-            { name: "ドン・ペリニヨン ヴィンテージ", cost: 2000, icon: "🍾" },
-            { name: "カジノホテル スタンダード宿泊券", cost: 3000, icon: "🏨" },
-            { name: "高級リムジン 空港プライベート送迎", cost: 4500, icon: "🚘" },
-            { name: "オーダーメイド・高級シャツ仕立券", cost: 6500, icon: "👔" },
-            { name: "三ツ星フレンチ ペアフルコース招待券", cost: 9000, icon: "🥩" },
-            { name: "プラチナ製特製マネークリップ", cost: 12000, icon: "📎" },
-            { name: "ホテル デラックス・スイート宿泊券", cost: 16000, icon: "🛏️" },
-            { name: "ハイブランド レザートラベルバッグ", cost: 22000, icon: "👜" },
-            { name: "リゾート内 専属バトラーサービス(3日間)", cost: 30000, icon: "🛎️" },
-            { name: "ナイトヘリコプター遊覧 貸切フライト", cost: 40000, icon: "🚁" },
-            { name: "最上階プレジデンシャル・スイート宿泊券", cost: 55000, icon: "🏙️" },
-            { name: "シアターショー VIP最前列ペア招待", cost: 75000, icon: "🎭" },
-            { name: "ファーストクラスで行く海外カジノツアー", cost: 100000, icon: "✈️" },
-            { name: "高級機械式腕時計『ロレックス デイトナ』", cost: 150000, icon: "⌚" },
-            { name: "プライベート・クルーザー 週末チャーター", cost: 220000, icon: "🛥️" },
-            { name: "ハイジュエリー ダイヤモンドネックレス", cost: 320000, icon: "💎" },
-            { name: "プライベートジェット 往復チャーターフライト", cost: 400000, icon: "🛩️" },
-            { name: "最高級スポーツカー", cost: 500000, icon: "🏎️" }
-        ];
-
-        function openShop() {
-            if(isAnim) return;
-            renderShop();
-            document.getElementById('shop-modal').style.display = 'flex';
-        }
-
-        function closeShop() {
-            document.getElementById('shop-modal').style.display = 'none';
-        }
-
-        function renderShop() {
-            document.getElementById('shop-cp-display').innerText = Math.floor(state.comp).toLocaleString() + " CP";
-            let html = '';
-            SHOP_ITEMS.forEach((item, idx) => {
-                let canAfford = state.comp >= item.cost;
-                let btnStyle = canAfford ? 'border-color:var(--comp-cyan); color:var(--comp-cyan);' : 'border-color:#555; color:#555; cursor:not-allowed;';
-                html += `
-                    <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:10px 15px; margin-bottom:10px; border-radius:8px; border:1px solid #333;">
-                        <div style="text-align:left; line-height:1.4; flex:1; padding-right:10px;">
-                            <div style="font-size:1.05rem; color:#fff; font-weight:bold; margin-bottom:4px;">${item.icon} ${item.name}</div>
-                            <div style="color:var(--comp-cyan); font-weight:bold; font-size:0.9rem;">${item.cost.toLocaleString()} CP</div>
-                        </div>
-                        <button onclick="buyItem(${idx})" class="btn-outline" style="padding:8px 20px; font-weight:bold; transition:0.2s; white-space:nowrap; ${btnStyle}" ${!canAfford ? 'disabled' : ''}>交換</button>
-                    </div>`;
-            });
-            document.getElementById('shop-items-list').innerHTML = html;
-
-            let invHtml = '';
-            if (state.items.length > 0) {
-                invHtml = '<div style="display:flex; flex-wrap:wrap; gap:8px;">';
-                state.items.forEach(itemName => {
-                    invHtml += `<span class="inventory-pill">${itemName}</span>`;
-                });
-                invHtml += '</div>';
-            } else {
-                invHtml = '<span style="color:#555; font-size:0.9rem; letter-spacing:1px;">(まだ何も持っていません)</span>';
-            }
-            document.getElementById('shop-inventory').innerHTML = invHtml;
-        }
-
-        function buyItem(idx) {
-            let item = SHOP_ITEMS[idx];
-            if (state.comp >= item.cost) {
-                state.comp -= item.cost;
-                state.items.push(item.name);
-                updateUI();
-                renderShop();
-                let cpDisp = document.getElementById('shop-cp-display');
-                cpDisp.style.color = '#e53935'; cpDisp.style.transform = 'scale(0.9)';
-                setTimeout(() => { cpDisp.style.color = 'var(--comp-cyan)'; cpDisp.style.transform = 'scale(1)'; }, 200);
-            }
         }
 
         function toggleCurrency() { state.cur = state.cur === 'USD' ? 'EUR' : 'USD'; updateUI(); }
         function switchScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
         function returnToLobby() { if(!isAnim) { document.getElementById('game-result').innerHTML = ""; switchScreen('lobby-screen'); } }
-        
-        function deduct(usd) { 
-            if(usd <= 0 || usd > state.bal) return false; 
-            state.bal -= usd; 
-            let compRate = isVipMode ? 0.003 : 0.001;
-            state.comp += (usd * compRate);
-            updateUI(); 
-            return true; 
-        }
-        
+        function deduct(usd) { if(usd <= 0 || usd > state.bal) return false; state.bal -= usd; updateUI(); return true; }
         function addWin(usd) { state.bal += usd; updateUI(); }
-        
-        function refundBet(usd) {
-            state.bal += usd;
-            let compRate = isVipMode ? 0.003 : 0.001;
-            state.comp -= (usd * compRate);
-            if(state.comp < 0) state.comp = 0; 
-            updateUI();
+
+        const SAVE_KEY = 'grc_v17_save';
+        function saveGame() { localStorage.setItem(SAVE_KEY, JSON.stringify(state)); alert("セーブしました。"); }
+        function loadGame() { 
+            let s = localStorage.getItem(SAVE_KEY); 
+            if (s) { 
+                state = JSON.parse(s); 
+                if(!state.history) state.history = [state.bal]; 
+                isMuted = false; document.querySelectorAll('.btn-mute').forEach(b => b.innerText = '🔊 SOUND ON'); updateBgm();
+                switchScreen('lobby-screen'); updateUI(); 
+            } else alert("データがありません。"); 
         }
 
         function cashOut() {
             let sym = state.cur === 'USD' ? '$' : '€';
-            let initial = state.totalDeposit; 
-            let withdrawn = state.totalWithdrawn;
-            let final = state.bal; 
-            
-            let initialDisp = state.cur === 'USD' ? initial : initial * rate;
-            let withdrawnDisp = state.cur === 'USD' ? withdrawn : withdrawn * rate;
-            let finalDisp = state.cur === 'USD' ? final : final * rate;
-            
-            let diff = (final + withdrawn) - initial; 
-            let diffDisp = state.cur === 'USD' ? diff : diff * rate;
+            let initial = state.history[0]; let initialDisp = state.cur === 'USD' ? initial : initial * rate;
+            let final = state.bal; let finalDisp = state.cur === 'USD' ? final : final * rate;
+            let diff = final - initial; let diffDisp = state.cur === 'USD' ? diff : diff * rate;
             let msg = "";
             
             if (diff > 0) { msg = `<span style="color:#4caf50;">+ ${sym}${diffDisp.toLocaleString(undefined, {minimumFractionDigits: 2})} WIN!</span>`;
@@ -701,7 +356,6 @@
             
             document.getElementById('final-result-msg').innerHTML = msg;
             document.getElementById('initial-balance-disp').innerText = sym + initialDisp.toLocaleString(undefined, {minimumFractionDigits: 2});
-            document.getElementById('withdrawn-balance-disp').innerText = sym + withdrawnDisp.toLocaleString(undefined, {minimumFractionDigits: 2});
             document.getElementById('final-balance-disp').innerText = sym + finalDisp.toLocaleString(undefined, {minimumFractionDigits: 2});
             switchScreen('result-screen'); setTimeout(drawGraph, 100); 
         }
@@ -742,7 +396,7 @@
         }
 
         function restartGame() {
-            state = { bal: 0, cur: 'USD', history: [], totalDeposit: 0, totalWithdrawn: 0, comp: 0, items: [] };
+            state = { bal: 0, cur: 'USD', history: [] };
             if(isVipMode) toggleVip();
             document.getElementById('initial-deposit').value = 10000;
             isMuted = true; updateBgm(); switchScreen('intro-screen');
@@ -760,7 +414,7 @@
                 isVipMode = true; document.body.classList.add('vip-mode');
                 btn.innerHTML = '🚪 RETURN TO NORMAL FLOOR'; btn.style.background = 'linear-gradient(180deg, #5c0000, #2b0000)';
                 document.getElementById('lobby-title').innerText = "VIP EXCLUSIVE GAMES";
-                alert("Bouncer: 「お待ちしておりました。究極のVIPルームへどうぞ。」\n\n【VIP特典】\n以降、ゲームでのコンプポイント(CP)獲得率が通常の3倍になります。");
+                alert("Bouncer: 「お待ちしておりました。究極のVIPルームへどうぞ。」");
             }
         }
 
@@ -804,7 +458,7 @@
         }
         function clearBacBets() {
             if(isAnim) return;
-            for(let t in bacBets) { refundBet(getUsd(bacBets[t])); bacBets[t] = 0; document.getElementById('bac-val-'+t).innerHTML = ''; }
+            for(let t in bacBets) { addWin(getUsd(bacBets[t])); bacBets[t] = 0; document.getElementById('bac-val-'+t).innerHTML = ''; }
         }
         async function playBaccarat() {
             let total = bacBets.P + bacBets.T + bacBets.B;
@@ -862,7 +516,7 @@
         }
 
         // ==========================================
-        // ROULETTE (完全修正版)
+        // ROULETTE (Advanced Edge/Corner Betting)
         // ==========================================
         let rBets = {};
         const rReds = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
@@ -924,9 +578,7 @@
                 id = type + '_' + nums.join('_');
             } else if (category === 'zero') {
                 type = 'straight'; nums = [0]; id = 'straight_0';
-            } else { 
-                type = 'outside'; id = 'outside_' + val; 
-            }
+            } else { type = 'outside'; id = 'outside_' + val; }
 
             if(!rBets[id]) { rBets[id] = { type, val, nums, amt: 0, el, top: posTop, left: posLeft }; } 
             else { el = rBets[id].el; posTop = rBets[id].top; posLeft = rBets[id].left; }
@@ -1008,7 +660,7 @@
 
         function clearRoulette() {
             if(isAnim) return;
-            for(let key in rBets) refundBet(getUsd(rBets[key].amt)); 
+            for(let key in rBets) addWin(getUsd(rBets[key].amt)); 
             rBets = {}; document.querySelectorAll('.r-placed-chip').forEach(c => c.remove());
         }
 
@@ -1029,7 +681,7 @@
         
         function clearBjBets() { 
             if(isAnim) return; 
-            for(let key in bjBets) { refundBet(getUsd(bjBets[key])); bjBets[key] = 0; }
+            for(let key in bjBets) { addWin(getUsd(bjBets[key])); bjBets[key] = 0; }
             ['main','pp','plus3'].forEach(id => document.getElementById('bj-val-'+id).innerHTML = ''); 
         }
         
@@ -1147,7 +799,7 @@
         }
 
         // ==========================================
-        // CRAPS
+        // CRAPS (Hold & Release Throw + Info Accordion)
         // ==========================================
         let cPoint = 0, crapsBets = { Pass:0, DontPass:0 };
         let chargeTimer; let rollPower = 0; let isCharging = false;
@@ -1163,7 +815,7 @@
         
         function clearCrapsBets() {
             if(cPoint!==0) return;
-            refundBet(getUsd(crapsBets.Pass)); refundBet(getUsd(crapsBets.DontPass));
+            addWin(getUsd(crapsBets.Pass)); addWin(getUsd(crapsBets.DontPass));
             crapsBets = {Pass:0, DontPass:0}; document.getElementById('cr-val-Pass').innerHTML=''; document.getElementById('cr-val-DontPass').innerHTML='';
         }
 
@@ -1508,9 +1160,8 @@
                 }
                 wheelGrad = wheelGrad.slice(0, -1);
 
-                // --- 盤面グリッドの生成 (完全修正版: アウトサイドベットも確実にタップ可能) ---
                 let tHTML = `<div class="r-cell" style="grid-row: 1 / span 3; grid-column: 1; border-top-left-radius: 40px; border-bottom-left-radius: 40px;" onclick="placeRouletteBet(event, 'zero', 0, this)">
-                                <div class="r-zero-oval"><span class="r-num-txt">0</span></div>
+                                <div class="r-zero-oval">0</div>
                              </div>`;
                 
                 for(let i=1; i<=36; i++) {
@@ -1518,7 +1169,7 @@
                     let gridRow = 3 - (i - 1) % 3;
                     let gridCol = Math.ceil(i / 3) + 1;
                     tHTML += `<div class="r-cell" style="grid-row: ${gridRow}; grid-column: ${gridCol};" onclick="placeRouletteBet(event, 'num', '${i}', this)">
-                                <div class="r-num-oval ${ovalClass}"><span class="r-num-txt">${i}</span></div>
+                                <div class="r-num-oval ${ovalClass}">${i}</div>
                               </div>`;
                 }
                 
@@ -1529,18 +1180,18 @@
                 `;
                 
                 tHTML += `
-                    <div class="r-cell" style="grid-row: 4; grid-column: 2 / span 4;" onclick="placeRouletteBet(event, 'doz1', 'doz1', this)"><span class="r-cell-txt">1ST 12</span></div>
-                    <div class="r-cell" style="grid-row: 4; grid-column: 6 / span 4;" onclick="placeRouletteBet(event, 'doz2', 'doz2', this)"><span class="r-cell-txt">2ND 12</span></div>
-                    <div class="r-cell" style="grid-row: 4; grid-column: 10 / span 4;" onclick="placeRouletteBet(event, 'doz3', 'doz3', this)"><span class="r-cell-txt">3RD 12</span></div>
+                    <div class="r-cell r-cell-txt" style="grid-row: 4; grid-column: 2 / span 4;" onclick="placeRouletteBet(event, 'doz1', 'doz1', this)">1ST 12</div>
+                    <div class="r-cell r-cell-txt" style="grid-row: 4; grid-column: 6 / span 4;" onclick="placeRouletteBet(event, 'doz2', 'doz2', this)">2ND 12</div>
+                    <div class="r-cell r-cell-txt" style="grid-row: 4; grid-column: 10 / span 4;" onclick="placeRouletteBet(event, 'doz3', 'doz3', this)">3RD 12</div>
                 `;
 
                 tHTML += `
-                    <div class="r-cell" style="grid-row: 5; grid-column: 2 / span 2; border-bottom-left-radius: 8px;" onclick="placeRouletteBet(event, 'low', 'low', this)"><span class="r-cell-txt">1 TO 18</span></div>
-                    <div class="r-cell" style="grid-row: 5; grid-column: 4 / span 2;" onclick="placeRouletteBet(event, 'even', 'even', this)"><span class="r-cell-txt">EVEN</span></div>
-                    <div class="r-cell r-red-oval" style="grid-row: 5; grid-column: 6 / span 2; border-radius:0; border:1px solid rgba(255,255,255,0.6);" onclick="placeRouletteBet(event, 'red', 'red', this)"><span class="r-cell-txt">RED</span></div>
-                    <div class="r-cell r-black-oval" style="grid-row: 5; grid-column: 8 / span 2; border-radius:0; border:1px solid rgba(255,255,255,0.6);" onclick="placeRouletteBet(event, 'black', 'black', this)"><span class="r-cell-txt">BLACK</span></div>
-                    <div class="r-cell" style="grid-row: 5; grid-column: 10 / span 2;" onclick="placeRouletteBet(event, 'odd', 'odd', this)"><span class="r-cell-txt">ODD</span></div>
-                    <div class="r-cell" style="grid-row: 5; grid-column: 12 / span 2; border-bottom-right-radius: 8px;" onclick="placeRouletteBet(event, 'high', 'high', this)"><span class="r-cell-txt">19 TO 36</span></div>
+                    <div class="r-cell r-cell-txt" style="grid-row: 5; grid-column: 2 / span 2; border-bottom-left-radius: 8px;" onclick="placeRouletteBet(event, 'low', 'low', this)">1 TO 18</div>
+                    <div class="r-cell r-cell-txt" style="grid-row: 5; grid-column: 4 / span 2;" onclick="placeRouletteBet(event, 'even', 'even', this)">EVEN</div>
+                    <div class="r-cell r-cell-txt r-red-oval" style="grid-row: 5; grid-column: 6 / span 2; border-radius:0; border:1px solid rgba(255,255,255,0.6);" onclick="placeRouletteBet(event, 'red', 'red', this)">RED</div>
+                    <div class="r-cell r-cell-txt r-black-oval" style="grid-row: 5; grid-column: 8 / span 2; border-radius:0; border:1px solid rgba(255,255,255,0.6);" onclick="placeRouletteBet(event, 'black', 'black', this)">BLACK</div>
+                    <div class="r-cell r-cell-txt" style="grid-row: 5; grid-column: 10 / span 2;" onclick="placeRouletteBet(event, 'odd', 'odd', this)">ODD</div>
+                    <div class="r-cell r-cell-txt" style="grid-row: 5; grid-column: 12 / span 2; border-bottom-right-radius: 8px;" onclick="placeRouletteBet(event, 'high', 'high', this)">19 TO 36</div>
                 `;
 
                 c.innerHTML = `
