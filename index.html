@@ -15,6 +15,7 @@
             --table-green: #0a4f1e;
             --text-main: #f0f0f0;
             --chip-outline: #fff;
+            --comp-cyan: #00e5ff;
         }
 
         body.vip-mode {
@@ -76,7 +77,7 @@
             padding: 15px 20px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #333; flex-wrap: wrap; gap: 10px;
         }
         .balance-label { color: #888; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        .balance-display { font-size: 2.2rem; font-weight: 700; color: var(--gold-light); font-family: 'Playfair Display', serif; }
+        .balance-display { font-size: 2.2rem; font-weight: 700; color: var(--gold-light); font-family: 'Playfair Display', serif; display:inline-block; }
 
         .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
         .game-card {
@@ -150,16 +151,46 @@
         .r-wheel-center-deco { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: radial-gradient(circle, #fbc02d, #f57f17); border-radius: 50%; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 10; }
         .r-wheel-center-txt { font-size: 24px; font-weight: 900; color: #111; text-shadow: 1px 1px 0px rgba(255,255,255,0.6); }
         .r-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); color: var(--gold-light); font-size: 32px; z-index: 20; text-shadow: 0 5px 10px rgba(0,0,0,0.9); }
+        
         .r-board-wrapper { width: 100%; padding: 10px 0 20px 0; display: flex; justify-content: center; box-sizing: border-box; }
-        .r-board { display: grid; width: 100%; max-width: 800px; grid-template-columns: 1.2fr repeat(12, 1fr) 1.2fr; grid-template-rows: repeat(3, minmax(28px, 45px)) minmax(25px, 40px) minmax(25px, 40px); background: #11682b; border-radius: 8px; border: 2px solid var(--gold-dark); gap: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.5); padding: 4px; box-sizing: border-box; }
-        .r-cell { border: 1px solid rgba(255,255,255,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; position: relative; color: #fff; font-weight: bold; font-family: 'Arial', sans-serif; user-select: none; box-sizing: border-box; }
+        .r-board { 
+            display: grid; width: 100%; max-width: 800px; 
+            grid-template-columns: 1.2fr repeat(12, 1fr) 1.2fr; 
+            grid-template-rows: repeat(3, minmax(28px, 45px)) minmax(25px, 40px) minmax(25px, 40px); 
+            background: #11682b; border-radius: 8px; border: 2px solid var(--gold-dark); 
+            gap: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.5); padding: 4px; box-sizing: border-box; 
+        }
+        .r-cell { 
+            border: 1px solid rgba(255,255,255,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            cursor: pointer; position: relative; color: #fff; font-weight: bold; font-family: 'Arial', sans-serif; user-select: none; 
+            box-sizing: border-box; pointer-events: auto !important;
+        }
         .r-cell:hover { background: rgba(255,255,255,0.2); }
-        .r-num-oval { width: 80%; height: 80%; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: clamp(0.6rem, 2.5vw, 1.2rem); transform: rotate(-90deg); pointer-events: none; }
-        .r-red-oval { background: #d32f2f; } .r-black-oval { background: #111; }
-        .r-zero-oval { width: 50%; height: 80%; border-radius: 50%; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; font-size: clamp(0.7rem, 2.5vw, 1.4rem); transform: rotate(-90deg); pointer-events: none; }
-        .r-txt-rot { transform: rotate(-90deg); font-size: clamp(0.5rem, 1.5vw, 0.85rem); letter-spacing: 0.5px; text-align: center; pointer-events: none;}
-        .r-cell-txt { font-size: clamp(0.55rem, 1.8vw, 1rem); letter-spacing: -0.5px; text-align: center; pointer-events: none;}
-        .r-placed-chip { position: absolute; width: clamp(16px, 3.5vw, 34px); height: clamp(16px, 3.5vw, 34px); border-radius: 50%; color: #000; font-size: clamp(0.45rem, 1vw, 0.65rem); font-weight: 900; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.6), inset 0 0 3px rgba(0,0,0,0.8); letter-spacing: -0.5px; pointer-events: none; z-index: 10; background: radial-gradient(circle at center, #ffffff 0%, #ffffff 38%, #cccccc 40%, var(--c-main) 43%, var(--c-main) 100%); border: 2px dashed var(--c-edge); transform: translate(-50%, -50%); }
+        
+        .r-num-oval { 
+            width: 80%; height: 85%; max-height: 45px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; pointer-events: none; 
+        }
+        .r-red-oval { background: #d32f2f; } 
+        .r-black-oval { background: #111; }
+        
+        .r-zero-oval { 
+            width: 60%; height: 80%; max-height: 100px; border-radius: 50%; border: 2px solid #fff; 
+            display: flex; align-items: center; justify-content: center; pointer-events: none; 
+        }
+        
+        .r-num-txt { font-size: clamp(0.7rem, 2.2vw, 1.3rem); transform: rotate(-90deg); pointer-events: none; font-weight: 900;}
+        .r-txt-rot { transform: rotate(-90deg); font-size: clamp(0.55rem, 1.6vw, 0.9rem); letter-spacing: 0.5px; text-align: center; pointer-events: none; }
+        .r-cell-txt { font-size: clamp(0.55rem, 1.8vw, 1rem); letter-spacing: -0.5px; text-align: center; pointer-events: none; }
+
+        .r-placed-chip { 
+            position: absolute; width: clamp(16px, 3.5vw, 34px); height: clamp(16px, 3.5vw, 34px); border-radius: 50%; color: #000; 
+            font-size: clamp(0.45rem, 1vw, 0.65rem); font-weight: 900; 
+            display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.6), inset 0 0 3px rgba(0,0,0,0.8); 
+            letter-spacing: -0.5px; pointer-events: none; z-index: 10; 
+            background: radial-gradient(circle at center, #ffffff 0%, #ffffff 38%, #cccccc 40%, var(--c-main) 43%, var(--c-main) 100%); 
+            border: 2px dashed var(--c-edge); transform: translate(-50%, -50%); 
+        }
 
         /* ==========================================
            Video Poker Machine UI
@@ -189,60 +220,134 @@
         
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
+        
+        .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center; flex-direction:column; }
+        
+        .inventory-pill {
+            background: rgba(255,255,255,0.08); border: 1px solid #555;
+            padding: 6px 12px; border-radius: 20px; font-size: 0.9rem;
+            color: #eee; display: inline-block; margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
 
+    <!-- ð¦ å°ç¨ATMã¢ã¼ãã« (å¥é/å¼åº) -->
+    <div id="atm-modal" class="modal-overlay">
+        <div class="panel" style="max-width:400px; width:90%; text-align:center; animation: fadeIn 0.3s ease-out;">
+            <h2 style="color:var(--gold-light); margin-bottom:10px; border-bottom:none;">CASHIER ATM</h2>
+            <p style="color:#aaa; font-size:0.9rem;">å¥é(DEPOSIT)ã¾ãã¯å¼åº(WITHDRAW)ããéé¡</p>
+            <div style="margin:25px 0;">
+                <span id="atm-sym" style="font-size:2rem; color:var(--gold); vertical-align:middle; margin-right:10px;">$</span>
+                <input type="number" id="atm-input" value="10000" min="1" style="width:200px; font-size:2rem;">
+            </div>
+            <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
+                <button onclick="closeAtm()" class="btn-outline" style="font-size:1rem; padding:10px 20px;">CANCEL</button>
+                <button onclick="confirmAtm('withdraw')" class="btn-outline" style="font-size:1rem; padding:10px 20px; border-color:#4caf50; color:#4caf50;">WITHDRAW</button>
+                <button onclick="confirmAtm('deposit')" class="btn-danger" style="font-size:1rem; padding:10px 20px;">DEPOSIT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ð¾ ã»ã¼ãï¼ã­ã¼ãã¢ã¼ãã« -->
+    <div id="saveload-modal" class="modal-overlay">
+        <div class="panel" style="max-width:500px; width:90%; text-align:center; animation: fadeIn 0.3s ease-out;">
+            <h2 id="saveload-title" style="color:var(--gold-light); margin-bottom:10px; border-bottom:none;">SAVE GAME</h2>
+            <div id="saveload-slots" style="display:flex; flex-direction:column; gap:10px; margin:20px 0;"></div>
+            <button onclick="closeSaveLoad()" class="btn-outline" style="font-size:1.1rem; padding:12px 30px;">CANCEL</button>
+        </div>
+    </div>
+
+    <!-- ð ã³ã³ãã·ã§ããã¢ã¼ãã« -->
+    <div id="shop-modal" class="modal-overlay">
+        <div class="panel" style="max-width:580px; width:95%; text-align:center; animation: fadeIn 0.3s ease-out; max-height:85vh; overflow-y:auto;">
+            <h2 style="color:var(--comp-cyan); margin-bottom:10px; border-bottom:none;">VIP COMP REWARDS</h2>
+            <p style="color:#aaa; font-size:0.9rem;">ã²ã¼ã ã§æºã¾ã£ãCP(ã³ã³ããã¤ã³ã)ãã«ã¸ããªã¾ã¼ãå¬å¼ç¹å¸ã¨äº¤æã§ãã¾ãã<br>â»VIPã«ã¼ã ã¯ç²å¾CPã3åã«ãªãã¾ãã</p>
+            
+            <div style="background:#111; border:1px solid #333; padding:15px; border-radius:8px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
+                <span style="color:#888; font-weight:bold;">YOUR CP:</span>
+                <span id="shop-cp-display" style="font-size:1.8rem; color:var(--comp-cyan); font-weight:900;">0 CP</span>
+            </div>
+
+            <div id="shop-items-list" style="margin-bottom:20px;"></div>
+            
+            <h3 style="font-size:1.2rem; color:var(--gold); text-align:left; border-bottom:1px solid #333; padding-bottom:5px;">Your Rewards & Items</h3>
+            <div id="shop-inventory" style="text-align:left; margin-bottom:20px; min-height:40px;"></div>
+
+            <button onclick="closeShop()" class="btn-outline" style="font-size:1.1rem; padding:12px 40px; width:100%;">CLOSE SHOP</button>
+        </div>
+    </div>
+
+    <!-- Intro -->
     <div id="intro-screen" class="screen active panel" style="max-width: 600px; text-align: center; margin-top: 10vh;">
         <h1 style="font-size: 3.5rem;">G.R.C</h1>
         <h2 style="border: none; margin-bottom: 5px;">Grand Royal Casino</h2>
         <p style="color: #aaa; margin-bottom: 40px;">Welcome to the Ultimate VIP Room</p>
         <div>
-            <label style="font-size: 1rem; color: #888; display: block; margin-bottom: 10px;">持ち込み金額 (Deposit)</label>
+            <label style="font-size: 1rem; color: #888; display: block; margin-bottom: 10px;">æã¡è¾¼ã¿éé¡ (Deposit)</label>
             <input type="number" id="initial-deposit" value="10000" min="1" style="width: 150px; font-size: 1.5rem;">
             <select id="initial-currency" style="font-size: 1.5rem; vertical-align: bottom;">
                 <option value="USD">USD ($)</option>
-                <option value="EUR">EUR (€)</option>
+                <option value="EUR">EUR (â¬)</option>
             </select><br><br>
             <button onclick="enterCasino()" style="font-size: 1.3rem; padding: 15px 50px; width: 100%; max-width: 300px;">ENTER CASINO</button><br><br>
-            <button onclick="loadGame()" class="btn-outline" style="font-size: 0.9rem; padding: 8px 20px;">前回のデータをロード</button>
+            <button onclick="openSaveLoad('load')" class="btn-outline" style="font-size: 0.9rem; padding: 8px 20px;">ãã¼ã¿ãã­ã¼ã (Load Game)</button>
         </div>
     </div>
 
+    <!-- Lobby -->
     <div id="lobby-screen" class="screen">
         <div class="status-bar">
-            <div><div class="balance-label">Total Balance</div><div class="balance-display" id="lobby-balance">$0.00</div></div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button onclick="toggleMute()" class="btn-outline btn-mute" style="font-size: 0.8rem; padding: 8px 15px; border-color:#888;">🔊 SOUND ON</button>
-                <button onclick="toggleCurrency()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px;">通貨切替</button>
-                <button onclick="saveGame()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px;">SAVE</button>
+            <div style="flex:1;">
+                <div class="balance-label">Total Balance</div>
+                <div class="balance-display" id="lobby-balance">$0.00</div>
+            </div>
+            <div style="flex:1; text-align:right;">
+                <div class="balance-label">COMP POINTS</div>
+                <div class="balance-display" id="lobby-comp" style="color:var(--comp-cyan);">0 CP</div>
+            </div>
+            <div style="width:100%; display: flex; gap: 10px; flex-wrap: wrap; margin-top:10px;">
+                <button onclick="openAtm()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px; border-color:var(--gold); color:var(--gold-light);">ðµ ATM (Deposit/Withdraw)</button>
+                <button onclick="openShop()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px; border-color:var(--comp-cyan); color:var(--comp-cyan);">ð COMP REWARDS</button>
+                <button onclick="toggleMute()" class="btn-outline btn-mute" style="font-size: 0.8rem; padding: 8px 15px; border-color:#888;">ð SOUND ON</button>
+                <button onclick="toggleCurrency()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px;">éè²¨åæ¿</button>
+                <button onclick="openSaveLoad('save')" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px;">SAVE</button>
             </div>
         </div>
         
         <div style="text-align: center; margin-bottom: 30px;">
-            <button id="vip-toggle-btn" onclick="toggleVip()" style="background: linear-gradient(180deg, #222, #000); color: var(--gold-light); border: 1px solid var(--gold); padding: 15px 40px; font-size: 1.2rem; letter-spacing: 2px;">👑 ENTER VIP ROOM (Req: 100K)</button>
+            <button id="vip-toggle-btn" onclick="toggleVip()" style="background: linear-gradient(180deg, #222, #000); color: var(--gold-light); border: 1px solid var(--gold); padding: 15px 40px; font-size: 1.2rem; letter-spacing: 2px;">ð ENTER VIP ROOM (Req: 100K)</button>
         </div>
 
         <h2 id="lobby-title">Select Your Game</h2>
         <div class="game-grid">
-            <div class="game-card" onclick="openGame('baccarat')"><h3 style="color:#aaf;">🃏 Baccarat</h3><p>チップベット＆スクイーズ</p></div>
-            <div class="game-card" onclick="openGame('blackjack')"><h3 style="color:#fff;">♠️ BlackJack</h3><p>サイドベット＆ダブルダウン</p></div>
-            <div class="game-card" onclick="openGame('roulette')"><h3 style="color:#faa;">🎡 Roulette</h3><p>本格スピン＆インサイドベット</p></div>
-            <div class="game-card" onclick="openGame('craps')"><h3 style="color:#ffa;">🎲 Craps</h3><p>ホールド＆リリース投球</p></div>
-            <div class="game-card" onclick="openGame('poker')"><h3 style="color:#faf;">🎰 Video Poker</h3><p>本格レトロキャビネット</p></div>
+            <div class="game-card" onclick="openGame('baccarat')"><h3 style="color:#aaf;">ð Baccarat</h3><p>ããããããï¼ã¹ã¯ã¤ã¼ãº</p></div>
+            <div class="game-card" onclick="openGame('blackjack')"><h3 style="color:#fff;">â ï¸ BlackJack</h3><p>ãµã¤ããããï¼ããã«ãã¦ã³</p></div>
+            <div class="game-card" onclick="openGame('roulette')"><h3 style="color:#faa;">ð¡ Roulette</h3><p>æ¬æ ¼ã¹ãã³ï¼ã¤ã³ãµã¤ãããã</p></div>
+            <div class="game-card" onclick="openGame('craps')"><h3 style="color:#ffa;">ð² Craps</h3><p>ãã¼ã«ãï¼ãªãªã¼ã¹æç</p></div>
+            <div class="game-card" onclick="openGame('poker')"><h3 style="color:#faf;">ð° Video Poker</h3><p>æ¬æ ¼ã¬ãã­ã­ã£ãããã</p></div>
         </div>
 
         <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid #333;">
-            <button onclick="cashOut()" class="btn-danger" style="font-size: 1.5rem; padding: 15px 50px; letter-spacing: 2px; width:100%; max-width:400px; box-shadow: 0 0 20px rgba(229, 57, 53, 0.4);">💰 CASH OUT (退店する)</button>
+            <button onclick="cashOut()" class="btn-danger" style="font-size: 1.5rem; padding: 15px 50px; letter-spacing: 2px; width:100%; max-width:400px; box-shadow: 0 0 20px rgba(229, 57, 53, 0.4);">ð° CASH OUT (éåºãã)</button>
         </div>
     </div>
 
+    <!-- Play Screen -->
     <div id="play-screen" class="screen">
         <div class="status-bar">
-            <div><div class="balance-label">Current Balance</div><div class="balance-display" id="play-balance">$0.00</div></div>
-            <div style="display: flex; gap: 10px;">
-                <button onclick="toggleMute()" class="btn-outline btn-mute" style="font-size: 0.8rem; padding: 8px 15px; border-color:#888;">🔊 SOUND ON</button>
-                <button onclick="returnToLobby()" class="btn-outline">◀ ロビーへ</button>
+            <div style="flex:1;">
+                <div class="balance-label">Current Balance</div>
+                <div class="balance-display" id="play-balance">$0.00</div>
+            </div>
+            <div style="flex:1; text-align:right;">
+                <div class="balance-label">COMP POINTS</div>
+                <div class="balance-display" id="play-comp" style="color:var(--comp-cyan);">0 CP</div>
+            </div>
+            <div style="width:100%; display: flex; gap: 10px; margin-top:10px;">
+                <button onclick="openAtm()" class="btn-outline" style="font-size: 0.8rem; padding: 8px 15px; border-color:var(--gold); color:var(--gold-light);">ðµ ATM</button>
+                <button onclick="toggleMute()" class="btn-outline btn-mute" style="font-size: 0.8rem; padding: 8px 15px; border-color:#888;">ð SOUND ON</button>
+                <button onclick="returnToLobby()" class="btn-outline">â ã­ãã¼ã¸</button>
             </div>
         </div>
         <div class="panel" style="margin-top: 0; display:flex; flex-direction:column; align-items:center;">
@@ -254,33 +359,38 @@
         </div>
     </div>
 
+    <!-- Result Screen -->
     <div id="result-screen" class="screen panel" style="text-align:center;">
         <h1>CASH OUT RESULT</h1>
         <h2 id="final-result-msg" style="border:none; margin: 20px 0; font-size:2.5rem;"></h2>
         
-        <div style="display:flex; justify-content:center; gap: 40px; margin:30px 0; flex-wrap:wrap;">
-            <div style="background:rgba(0,0,0,0.5); padding:20px; border-radius:12px; border:1px solid #333; min-width:200px;">
-                <div style="color:#aaa; font-size:0.9rem; letter-spacing:1px; margin-bottom:5px;">INITIAL DEPOSIT</div>
-                <div id="initial-balance-disp" style="font-size:2rem; color:#fff;"></div>
+        <div style="display:flex; justify-content:center; gap: 20px; margin:30px 0; flex-wrap:wrap;">
+            <div style="background:rgba(0,0,0,0.5); padding:15px; border-radius:12px; border:1px solid #333; min-width:160px;">
+                <div style="color:#aaa; font-size:0.8rem; letter-spacing:1px; margin-bottom:5px;">TOTAL DEPOSIT</div>
+                <div id="initial-balance-disp" style="font-size:1.5rem; color:#fff;"></div>
             </div>
-            <div style="background:rgba(0,0,0,0.5); padding:20px; border-radius:12px; border:1px solid var(--gold-dark); min-width:200px;">
-                <div style="color:#aaa; font-size:0.9rem; letter-spacing:1px; margin-bottom:5px;">FINAL BALANCE</div>
-                <div id="final-balance-disp" style="font-size:2.5rem; color:var(--gold-light); font-family:'Playfair Display',serif; font-weight:bold;"></div>
+            <div style="background:rgba(0,0,0,0.5); padding:15px; border-radius:12px; border:1px solid #333; min-width:160px;">
+                <div style="color:#aaa; font-size:0.8rem; letter-spacing:1px; margin-bottom:5px;">TOTAL WITHDRAWN</div>
+                <div id="withdrawn-balance-disp" style="font-size:1.5rem; color:#4caf50;"></div>
+            </div>
+            <div style="background:rgba(0,0,0,0.5); padding:15px; border-radius:12px; border:1px solid var(--gold-dark); min-width:160px;">
+                <div style="color:#aaa; font-size:0.8rem; letter-spacing:1px; margin-bottom:5px;">FINAL BALANCE</div>
+                <div id="final-balance-disp" style="font-size:2rem; color:var(--gold-light); font-family:'Playfair Display',serif; font-weight:bold;"></div>
             </div>
         </div>
 
-        <h3 style="text-align:left; color:#ccc; font-size:1.2rem; margin-top:40px;">Balance History (収支グラフ)</h3>
+        <h3 style="text-align:left; color:#ccc; font-size:1.2rem; margin-top:40px;">Balance History (åæ¯ã°ã©ã)</h3>
         <div style="width:100%; overflow-x:auto; padding-bottom:10px;">
             <canvas id="history-graph" width="900" height="350" style="background:linear-gradient(to bottom, #111, #000); border-radius:12px; border:1px solid #444; width:100%; max-width:900px;"></canvas>
         </div>
 
         <div style="margin-top:50px;">
-            <button onclick="restartGame()" class="btn-outline" style="font-size:1.2rem; padding:15px 40px; letter-spacing:1px;">🔄 RESTART CASINO</button>
+            <button onclick="restartGame()" class="btn-outline" style="font-size:1.2rem; padding:15px 40px; letter-spacing:1px;">ð RESTART CASINO</button>
         </div>
     </div>
 
     <script>
-        let state = { bal: 0, cur: 'USD', history: [] };
+        let state = { bal: 0, cur: 'USD', history: [], totalDeposit: 0, totalWithdrawn: 0, comp: 0, items: [] };
         const rate = 0.92;
         let isAnim = false;
         let selChip = 10; 
@@ -293,7 +403,7 @@
 
         function toggleMute() {
             isMuted = !isMuted;
-            document.querySelectorAll('.btn-mute').forEach(b => b.innerText = isMuted ? '🔇 SOUND OFF' : '🔊 SOUND ON');
+            document.querySelectorAll('.btn-mute').forEach(b => b.innerText = isMuted ? 'ð SOUND OFF' : 'ð SOUND ON');
             updateBgm();
         }
 
@@ -306,56 +416,303 @@
         function getUsd(dispVal) { return state.cur === 'USD' ? dispVal : dispVal / rate; }
         
         function updateUI() {
-            let sym = state.cur === 'USD' ? '$' : '€';
+            let sym = state.cur === 'USD' ? '$' : 'â¬';
             let v = state.cur === 'USD' ? state.bal : state.bal * rate;
             let str = sym + v.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2});
             document.getElementById('lobby-balance').innerText = str;
             document.getElementById('play-balance').innerText = str;
+            
+            let cpStr = Math.floor(state.comp).toLocaleString() + " CP";
+            if(document.getElementById('lobby-comp')) document.getElementById('lobby-comp').innerText = cpStr;
+            if(document.getElementById('play-comp')) document.getElementById('play-comp').innerText = cpStr;
         }
 
         function recordHistory() { state.history.push(state.bal); }
 
         function enterCasino() {
             let d = parseFloat(document.getElementById('initial-deposit').value);
-            if (isNaN(d) || d <= 0) return alert("正しい金額を入力してください。");
+            if (isNaN(d) || d <= 0) {
+                document.getElementById('initial-deposit').value = "";
+                document.getElementById('initial-deposit').placeholder = "Invalid!";
+                return;
+            }
             state.cur = document.getElementById('initial-currency').value;
             state.bal = (state.cur === 'USD') ? d : d / rate;
+            state.totalDeposit = state.bal; 
+            state.totalWithdrawn = 0;
             state.history = [state.bal]; 
-            isMuted = false; document.querySelectorAll('.btn-mute').forEach(b => b.innerText = '🔊 SOUND ON'); updateBgm();
+            
+            isMuted = false; document.querySelectorAll('.btn-mute').forEach(b => b.innerText = 'ð SOUND ON'); updateBgm();
             switchScreen('lobby-screen'); updateUI();
+        }
+
+        // ==========================================
+        // ã»ã¼ãï¼ã­ã¼ãã¹ã­ããæ©è½
+        // ==========================================
+        let saveLoadMode = 'save';
+        function openSaveLoad(mode) {
+            if(isAnim) return;
+            saveLoadMode = mode;
+            document.getElementById('saveload-title').innerText = mode === 'save' ? 'SAVE GAME' : 'LOAD GAME';
+            renderSlots();
+            document.getElementById('saveload-modal').style.display = 'flex';
+        }
+
+        function closeSaveLoad() {
+            document.getElementById('saveload-modal').style.display = 'none';
+        }
+
+        function renderSlots() {
+            let html = '';
+            for(let i=1; i<=3; i++) {
+                let s = localStorage.getItem('grc_v25_save_' + i);
+                if(s) {
+                    let data = JSON.parse(s);
+                    let dateStr = new Date(data.timestamp || Date.now()).toLocaleString();
+                    let sym = data.cur === 'USD' ? '$' : 'â¬';
+                    let bal = data.cur === 'USD' ? data.bal : data.bal * rate;
+                    html += `<button class="btn-outline" style="text-align:left; padding:15px; border-color:#555;" onclick="executeSaveLoad(${i})">
+                                <div style="color:var(--gold); font-weight:bold;">SLOT ${i}</div>
+                                <div style="font-size:0.9rem; color:#ccc;">${dateStr} | ${sym}${bal.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})} | ${Math.floor(data.comp || 0)} CP</div>
+                             </button>`;
+                } else {
+                    html += `<button class="btn-outline" style="text-align:center; padding:15px; border-color:#333; color:#555;" onclick="executeSaveLoad(${i})">
+                                <div style="font-weight:bold;">SLOT ${i} - EMPTY</div>
+                             </button>`;
+                }
+            }
+            document.getElementById('saveload-slots').innerHTML = html;
+        }
+
+        function executeSaveLoad(slot) {
+            if(saveLoadMode === 'save') {
+                state.timestamp = Date.now();
+                localStorage.setItem('grc_v25_save_' + slot, JSON.stringify(state));
+                alert(`ã¹ã­ãã ${slot} ã«ã»ã¼ããã¾ããã`);
+                closeSaveLoad();
+            } else {
+                let s = localStorage.getItem('grc_v25_save_' + slot);
+                if(s) {
+                    state = JSON.parse(s);
+                    if(!state.history) state.history = [state.bal]; 
+                    if(state.totalDeposit === undefined) state.totalDeposit = state.history[0]; 
+                    if(state.totalWithdrawn === undefined) state.totalWithdrawn = 0; 
+                    if(state.comp === undefined) state.comp = 0;
+                    if(state.items === undefined) state.items = [];
+                    
+                    isMuted = false; document.querySelectorAll('.btn-mute').forEach(b => b.innerText = 'ð SOUND ON'); updateBgm();
+                    closeSaveLoad();
+                    switchScreen('lobby-screen'); updateUI(); 
+                } else {
+                    alert("ãã®ã¹ã­ããã«ã¯ãã¼ã¿ãããã¾ããã");
+                }
+            }
+        }
+
+        // ==========================================
+        // ATMã¢ã¼ãã«å¦ç (DEPOSIT & WITHDRAW)
+        // ==========================================
+        function openAtm() {
+            if(isAnim) return;
+            let sym = state.cur === 'USD' ? '$' : 'â¬';
+            document.getElementById('atm-sym').innerText = sym;
+            document.getElementById('atm-input').value = 10000;
+            document.getElementById('atm-modal').style.display = 'flex';
+        }
+
+        function closeAtm() {
+            document.getElementById('atm-modal').style.display = 'none';
+        }
+
+        function confirmAtm(action) {
+            let val = parseFloat(document.getElementById('atm-input').value);
+            if (isNaN(val) || val <= 0) {
+                document.getElementById('atm-input').value = "";
+                document.getElementById('atm-input').placeholder = "Invalid!";
+                return;
+            }
+
+            let usdAmt = state.cur === 'USD' ? val : val / rate;
+            let sym = state.cur === 'USD' ? '$' : 'â¬';
+
+            if (action === 'deposit') {
+                state.bal += usdAmt;
+                state.totalDeposit += usdAmt;
+                recordHistory();
+                updateUI();
+                
+                document.querySelectorAll('.balance-display').forEach(el => {
+                    el.style.color = '#4caf50'; el.style.transform = 'scale(1.1)'; el.style.transition = 'all 0.3s';
+                    setTimeout(() => { el.style.color = 'var(--gold-light)'; el.style.transform = 'scale(1)'; }, 500);
+                });
+                alert(`${sym}${val.toLocaleString()} ãè¿½å æå¥ãã¾ããï¼`);
+            
+            } else if (action === 'withdraw') {
+                if (usdAmt > state.bal) {
+                    alert("æ®é«ãä¸è¶³ãã¦ãã¾ãï¼");
+                    return;
+                }
+                state.bal -= usdAmt;
+                state.totalWithdrawn += usdAmt;
+                recordHistory();
+                updateUI();
+                
+                document.querySelectorAll('.balance-display').forEach(el => {
+                    el.style.color = '#e53935'; el.style.transform = 'scale(0.9)'; el.style.transition = 'all 0.3s';
+                    setTimeout(() => { el.style.color = 'var(--gold-light)'; el.style.transform = 'scale(1)'; }, 500);
+                });
+                alert(`${sym}${val.toLocaleString()} ãå¼ãåºãã¾ããï¼`);
+            }
+
+            closeAtm();
+        }
+
+        // ==========================================
+        // ãã°ä¿®æ­£æ¸ï¼æ°ããã·ã£ããã«ã¢ã«ã´ãªãºã  (Fisher-Yates)
+        // ==========================================
+        function shuffleDeck(deck) {
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+            return deck;
+        }
+
+        // ==========================================
+        // COMP SHOP ã·ã¹ãã 
+        // ==========================================
+        const SHOP_ITEMS = [
+            { name: "ããã©ã«ã¦ã©ã¼ã¿ã¼ï¼ç¹è£½ãã³ã", cost: 5, icon: "ð§" },
+            { name: "ã«ã¯ãã«ãµã¼ãã¹", cost: 10, icon: "ð¸" },
+            { name: "ã«ã¸ãè¨å¿µãã¤ã¹ï¼ç¹è£½ã±ã¼ã¹å¥ï¼", cost: 20, icon: "ð²" },
+            { name: "ã«ã¸ãç¹è£½ãã¬ã¤ã³ã°ã«ã¼ã", cost: 35, icon: "ð" },
+            { name: "ãã¬ãã¢ã ã»ã·ã¬ã¼", cost: 50, icon: "ð¬" },
+            { name: "ã«ãã§ã©ã¦ã³ã¸ ã³ã¼ãã¼ï¼ã¹ã¤ã¼ã", cost: 75, icon: "â" },
+            { name: "ã«ã¸ããªã¾ã¼ãç¹è£½ã­ã£ãã", cost: 100, icon: "ð§¢" },
+            { name: "VIPã©ã¦ã³ã¸ ã«ã¯ãã«ã¢ã¯ã¼ãã¹", cost: 150, icon: "ð·" },
+            { name: "é«ç´ãã¥ããã§ãã£ãã¼å¸", cost: 250, icon: "ð½ï¸" },
+            { name: "ç¹è£½ã¡ã¿ã«ã«ã¼ãã±ã¼ã¹", cost: 350, icon: "ð³" },
+            { name: "ãã­ä»æ§ãã¼ã«ã¼ãããã»ãã", cost: 500, icon: "ð§³" },
+            { name: "ãªã¾ã¼ããã¼ã« ã«ããçµæ¥å©ç¨æ¨©", cost: 750, icon: "ðï¸" },
+            { name: "VIPå°ç¨ãµã­ã³ ãã«ã¢ã¯ã»ã¹ãã¹", cost: 1000, icon: "ðï¸" },
+            { name: "æ¥µä¸ãªã©ã¯ã¼ã¼ã·ã§ã³ã¹ã 90åã³ã¼ã¹", cost: 1500, icon: "ð" },
+            { name: "ãã³ã»ããªãã¨ã³ ã´ã£ã³ãã¼ã¸", cost: 2000, icon: "ð¾" },
+            { name: "ã«ã¸ãããã« ã¹ã¿ã³ãã¼ãå®¿æ³å¸", cost: 3000, icon: "ð¨" },
+            { name: "é«ç´ãªã ã¸ã³ ç©ºæ¸¯ãã©ã¤ãã¼ãéè¿", cost: 4500, icon: "ð" },
+            { name: "ãªã¼ãã¼ã¡ã¤ãã»é«ç´ã·ã£ãä»ç«å¸", cost: 6500, icon: "ð" },
+            { name: "ä¸ãæãã¬ã³ã ãã¢ãã«ã³ã¼ã¹æå¾å¸", cost: 9000, icon: "ð¥©" },
+            { name: "ãã©ããè£½ç¹è£½ããã¼ã¯ãªãã", cost: 12000, icon: "ð" },
+            { name: "ããã« ãã©ãã¯ã¹ã»ã¹ã¤ã¼ãå®¿æ³å¸", cost: 16000, icon: "ðï¸" },
+            { name: "ãã¤ãã©ã³ã ã¬ã¶ã¼ãã©ãã«ããã°", cost: 22000, icon: "ð" },
+            { name: "ãªã¾ã¼ãå å°å±ããã©ã¼ãµã¼ãã¹(3æ¥é)", cost: 30000, icon: "ðï¸" },
+            { name: "ãã¤ãããªã³ãã¿ã¼éè¦§ è²¸åãã©ã¤ã", cost: 40000, icon: "ð" },
+            { name: "æä¸éãã¬ã¸ãã³ã·ã£ã«ã»ã¹ã¤ã¼ãå®¿æ³å¸", cost: 55000, icon: "ðï¸" },
+            { name: "ã·ã¢ã¿ã¼ã·ã§ã¼ VIPæååãã¢æå¾", cost: 75000, icon: "ð­" },
+            { name: "ãã¡ã¼ã¹ãã¯ã©ã¹ã§è¡ãæµ·å¤ã«ã¸ããã¢ã¼", cost: 100000, icon: "âï¸" },
+            { name: "é«ç´æ©æ¢°å¼èæè¨ãã­ã¬ãã¯ã¹ ãã¤ããã", cost: 150000, icon: "â" },
+            { name: "ãã©ã¤ãã¼ãã»ã¯ã«ã¼ã¶ã¼ é±æ«ãã£ã¼ã¿ã¼", cost: 220000, icon: "ð¥ï¸" },
+            { name: "ãã¤ã¸ã¥ã¨ãªã¼ ãã¤ã¤ã¢ã³ãããã¯ã¬ã¹", cost: 320000, icon: "ð" },
+            { name: "ãã©ã¤ãã¼ãã¸ã§ãã å¾å¾©ãã£ã¼ã¿ã¼", cost: 400000, icon: "ð©ï¸" },
+            { name: "æé«ç´ã¹ãã¼ãã«ã¼", cost: 500000, icon: "ðï¸" }
+        ];
+
+        function openShop() {
+            if(isAnim) return;
+            renderShop();
+            document.getElementById('shop-modal').style.display = 'flex';
+        }
+
+        function closeShop() {
+            document.getElementById('shop-modal').style.display = 'none';
+        }
+
+        function renderShop() {
+            document.getElementById('shop-cp-display').innerText = Math.floor(state.comp).toLocaleString() + " CP";
+            let html = '';
+            SHOP_ITEMS.forEach((item, idx) => {
+                let canAfford = state.comp >= item.cost;
+                let btnStyle = canAfford ? 'border-color:var(--comp-cyan); color:var(--comp-cyan);' : 'border-color:#555; color:#555; cursor:not-allowed;';
+                html += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:10px 15px; margin-bottom:10px; border-radius:8px; border:1px solid #333;">
+                        <div style="text-align:left; line-height:1.4; flex:1; padding-right:10px;">
+                            <div style="font-size:1.05rem; color:#fff; font-weight:bold; margin-bottom:4px;">${item.icon} ${item.name}</div>
+                            <div style="color:var(--comp-cyan); font-weight:bold; font-size:0.9rem;">${item.cost.toLocaleString()} CP</div>
+                        </div>
+                        <button onclick="buyItem(${idx})" class="btn-outline" style="padding:8px 20px; font-weight:bold; transition:0.2s; white-space:nowrap; ${btnStyle}" ${!canAfford ? 'disabled' : ''}>äº¤æ</button>
+                    </div>`;
+            });
+            document.getElementById('shop-items-list').innerHTML = html;
+
+            let invHtml = '';
+            if (state.items.length > 0) {
+                invHtml = '<div style="display:flex; flex-wrap:wrap; gap:8px;">';
+                state.items.forEach(itemName => {
+                    invHtml += `<span class="inventory-pill">${itemName}</span>`;
+                });
+                invHtml += '</div>';
+            } else {
+                invHtml = '<span style="color:#555; font-size:0.9rem; letter-spacing:1px;">(ã¾ã ä½ãæã£ã¦ãã¾ãã)</span>';
+            }
+            document.getElementById('shop-inventory').innerHTML = invHtml;
+        }
+
+        function buyItem(idx) {
+            let item = SHOP_ITEMS[idx];
+            if (state.comp >= item.cost) {
+                state.comp -= item.cost;
+                state.items.push(item.name);
+                updateUI();
+                renderShop();
+                let cpDisp = document.getElementById('shop-cp-display');
+                cpDisp.style.color = '#e53935'; cpDisp.style.transform = 'scale(0.9)';
+                setTimeout(() => { cpDisp.style.color = 'var(--comp-cyan)'; cpDisp.style.transform = 'scale(1)'; }, 200);
+            }
         }
 
         function toggleCurrency() { state.cur = state.cur === 'USD' ? 'EUR' : 'USD'; updateUI(); }
         function switchScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
         function returnToLobby() { if(!isAnim) { document.getElementById('game-result').innerHTML = ""; switchScreen('lobby-screen'); } }
-        function deduct(usd) { if(usd <= 0 || usd > state.bal) return false; state.bal -= usd; updateUI(); return true; }
+        
+        function deduct(usd) { 
+            if(usd <= 0 || usd > state.bal) return false; 
+            state.bal -= usd; 
+            let compRate = isVipMode ? 0.003 : 0.001;
+            state.comp += (usd * compRate);
+            updateUI(); 
+            return true; 
+        }
+        
         function addWin(usd) { state.bal += usd; updateUI(); }
-
-        const SAVE_KEY = 'grc_v17_save';
-        function saveGame() { localStorage.setItem(SAVE_KEY, JSON.stringify(state)); alert("セーブしました。"); }
-        function loadGame() { 
-            let s = localStorage.getItem(SAVE_KEY); 
-            if (s) { 
-                state = JSON.parse(s); 
-                if(!state.history) state.history = [state.bal]; 
-                isMuted = false; document.querySelectorAll('.btn-mute').forEach(b => b.innerText = '🔊 SOUND ON'); updateBgm();
-                switchScreen('lobby-screen'); updateUI(); 
-            } else alert("データがありません。"); 
+        
+        function refundBet(usd) {
+            state.bal += usd;
+            let compRate = isVipMode ? 0.003 : 0.001;
+            state.comp -= (usd * compRate);
+            if(state.comp < 0) state.comp = 0; 
+            updateUI();
         }
 
         function cashOut() {
-            let sym = state.cur === 'USD' ? '$' : '€';
-            let initial = state.history[0]; let initialDisp = state.cur === 'USD' ? initial : initial * rate;
-            let final = state.bal; let finalDisp = state.cur === 'USD' ? final : final * rate;
-            let diff = final - initial; let diffDisp = state.cur === 'USD' ? diff : diff * rate;
+            let sym = state.cur === 'USD' ? '$' : 'â¬';
+            let initial = state.totalDeposit; 
+            let withdrawn = state.totalWithdrawn;
+            let final = state.bal; 
+            
+            let initialDisp = state.cur === 'USD' ? initial : initial * rate;
+            let withdrawnDisp = state.cur === 'USD' ? withdrawn : withdrawn * rate;
+            let finalDisp = state.cur === 'USD' ? final : final * rate;
+            
+            let diff = (final + withdrawn) - initial; 
+            let diffDisp = state.cur === 'USD' ? diff : diff * rate;
             let msg = "";
             
             if (diff > 0) { msg = `<span style="color:#4caf50;">+ ${sym}${diffDisp.toLocaleString(undefined, {minimumFractionDigits: 2})} WIN!</span>`;
             } else if (diff < 0) { msg = `<span style="color:#e53935;">- ${sym}${Math.abs(diffDisp).toLocaleString(undefined, {minimumFractionDigits: 2})} LOSE</span>`;
-            } else { msg = `<span style="color:#fff;">± ${sym}0.00 EVEN</span>`; }
+            } else { msg = `<span style="color:#fff;">Â± ${sym}0.00 EVEN</span>`; }
             
             document.getElementById('final-result-msg').innerHTML = msg;
             document.getElementById('initial-balance-disp').innerText = sym + initialDisp.toLocaleString(undefined, {minimumFractionDigits: 2});
+            document.getElementById('withdrawn-balance-disp').innerText = sym + withdrawnDisp.toLocaleString(undefined, {minimumFractionDigits: 2});
             document.getElementById('final-balance-disp').innerText = sym + finalDisp.toLocaleString(undefined, {minimumFractionDigits: 2});
             switchScreen('result-screen'); setTimeout(drawGraph, 100); 
         }
@@ -396,7 +753,7 @@
         }
 
         function restartGame() {
-            state = { bal: 0, cur: 'USD', history: [] };
+            state = { bal: 0, cur: 'USD', history: [], totalDeposit: 0, totalWithdrawn: 0, comp: 0, items: [] };
             if(isVipMode) toggleVip();
             document.getElementById('initial-deposit').value = 10000;
             isMuted = true; updateBgm(); switchScreen('intro-screen');
@@ -406,15 +763,15 @@
             let btn = document.getElementById('vip-toggle-btn');
             if(isVipMode) {
                 isVipMode = false; document.body.classList.remove('vip-mode');
-                btn.innerHTML = '👑 ENTER VIP ROOM (Req: 100K)'; btn.style.background = 'linear-gradient(180deg, #222, #000)';
+                btn.innerHTML = 'ð ENTER VIP ROOM (Req: 100K)'; btn.style.background = 'linear-gradient(180deg, #222, #000)';
                 document.getElementById('lobby-title').innerText = "Select Your Game";
             } else {
                 let v = state.cur === 'USD' ? state.bal : state.bal * rate;
-                if(v < 100000) { alert("Bouncer: 「お客様、VIPルームは所持金 100,000 以上の方のみご案内しております。出直してきな。」"); return; }
+                if(v < 100000) { alert("Bouncer: ããå®¢æ§ãVIPã«ã¼ã ã¯ææé 100,000 ä»¥ä¸ã®æ¹ã®ã¿ãæ¡åãã¦ããã¾ããåºç´ãã¦ããªãã"); return; }
                 isVipMode = true; document.body.classList.add('vip-mode');
-                btn.innerHTML = '🚪 RETURN TO NORMAL FLOOR'; btn.style.background = 'linear-gradient(180deg, #5c0000, #2b0000)';
+                btn.innerHTML = 'ðª RETURN TO NORMAL FLOOR'; btn.style.background = 'linear-gradient(180deg, #5c0000, #2b0000)';
                 document.getElementById('lobby-title').innerText = "VIP EXCLUSIVE GAMES";
-                alert("Bouncer: 「お待ちしておりました。究極のVIPルームへどうぞ。」");
+                alert("Bouncer: ããå¾ã¡ãã¦ããã¾ãããç©¶æ¥µã®VIPã«ã¼ã ã¸ã©ãããã\n\nãVIPç¹å¸ã\nä»¥éãã²ã¼ã ã§ã®ã³ã³ããã¤ã³ã(CP)ç²å¾çãéå¸¸ã®3åã«ãªãã¾ãã");
             }
         }
 
@@ -430,7 +787,7 @@
         }
 
         function renderChipSelector() {
-            let sym = state.cur === 'USD' ? '$' : '€';
+            let sym = state.cur === 'USD' ? '$' : 'â¬';
             let chips = isVipMode ? [1000, 5000, 10000, 25000, 100000, 500000, 1000000] : [1, 5, 10, 25, 100, 500, 1000];
             if(!chips.includes(selChip)) selChip = chips[2];
             let html = `<div class="chip-selector"><span style="width:100%; text-align:center; color:#ccc; font-size:0.9rem;">TAP TO SELECT CHIP</span>`;
@@ -452,22 +809,22 @@
             if(isAnim) return;
             if(deduct(getUsd(selChip))) { 
                 bacBets[type] += selChip; 
-                let sym = state.cur === 'USD' ? '$' : '€';
+                let sym = state.cur === 'USD' ? '$' : 'â¬';
                 document.getElementById('bac-val-'+type).innerHTML = `<div class="placed-chip ${getChipClassForAmount(bacBets[type])}">${sym}${formatChipValue(bacBets[type])}</div>`;
-            } else alert("残高不足です");
+            } else alert("æ®é«ä¸è¶³ã§ã");
         }
         function clearBacBets() {
             if(isAnim) return;
-            for(let t in bacBets) { addWin(getUsd(bacBets[t])); bacBets[t] = 0; document.getElementById('bac-val-'+t).innerHTML = ''; }
+            for(let t in bacBets) { refundBet(getUsd(bacBets[t])); bacBets[t] = 0; document.getElementById('bac-val-'+t).innerHTML = ''; }
         }
         async function playBaccarat() {
             let total = bacBets.P + bacBets.T + bacBets.B;
-            if(total <= 0) return alert("チップをベットエリアに置いてください");
+            if(total <= 0) return alert("ãããããããã¨ãªã¢ã«ç½®ãã¦ãã ãã");
             isAnim = true; document.getElementById('game-result').innerText = "No More Bet..."; document.getElementById('bac-btn').disabled = true;
 
             const gc = () => {
-                let n = Math.floor(Math.random()*13)+1; let suit = ['♠','♥','♦','♣'][Math.floor(Math.random()*4)];
-                let col = (suit==='♥'||suit==='♦')?'red':'';
+                let n = Math.floor(Math.random()*13)+1; let suit = ['â ','â¥','â¦','â£'][Math.floor(Math.random()*4)];
+                let col = (suit==='â¥'||suit==='â¦')?'red':'';
                 let d = n===1?'A':n===11?'J':n===12?'Q':n===13?'K':n; let v = n>=10?0:n;
                 return {v, html: '<div class="card-base ' + col + '">' + d + '<br><span style="font-size:0.7em">' + suit + '</span></div><div class="squeeze-cover card-back"></div>'};
             };
@@ -486,12 +843,12 @@
                 </div>
             `;
 
-            await sleep(500); document.getElementById('game-result').innerText = "PLAYERを絞ります...";
+            await sleep(500); document.getElementById('game-result').innerText = "PLAYERãçµãã¾ã...";
             document.getElementById('pc1').classList.add('squeeze-active'); await sleep(1000);
             document.getElementById('pc2').classList.add('squeeze-active'); await sleep(1000);
             let pScore = (p1.v + p2.v)%10; document.getElementById('p-score').innerText = "Score: " + pScore;
 
-            document.getElementById('game-result').innerText = "BANKERを絞ります...";
+            document.getElementById('game-result').innerText = "BANKERãçµãã¾ã...";
             document.getElementById('bc1').classList.add('squeeze-active'); await sleep(1000);
             document.getElementById('bc2').classList.add('squeeze-active'); await sleep(1000);
             let bScore = (b1.v + b2.v)%10; document.getElementById('b-score').innerText = "Score: " + bScore;
@@ -505,7 +862,7 @@
             if(win==='T') { winUsd += getUsd(bacBets.T)*9; winUsd += getUsd(bacBets.P); winUsd += getUsd(bacBets.B); } 
             
             if(winUsd > 0) { 
-                addWin(winUsd); let sym = state.cur === 'USD' ? '$' : '€';
+                addWin(winUsd); let sym = state.cur === 'USD' ? '$' : 'â¬';
                 document.getElementById('game-result').innerText += " (+" + sym + formatChipValue(winUsd) + ")"; 
             }
             
@@ -516,7 +873,7 @@
         }
 
         // ==========================================
-        // ROULETTE (Advanced Edge/Corner Betting)
+        // ROULETTE (ä¿®æ­£ç: ã¢ã¦ããµã¤ããããã¯ãªãã¯å¯è½)
         // ==========================================
         let rBets = {};
         const rReds = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
@@ -525,7 +882,7 @@
 
         function placeRouletteBet(e, category, val, el) {
             if(isAnim) return;
-            if(!deduct(getUsd(selChip))) { alert("残高不足です"); return; }
+            if(!deduct(getUsd(selChip))) { alert("æ®é«ä¸è¶³ã§ã"); return; }
 
             let id = val; let type = category; let nums = [];
             let posTop = '50%'; let posLeft = '50%';
@@ -589,7 +946,7 @@
             let existingChip = el.querySelector('.' + chipClass);
             if(existingChip) existingChip.remove();
 
-            let sym = state.cur === 'USD' ? '$' : '€';
+            let sym = state.cur === 'USD' ? '$' : 'â¬';
             let cClass = getChipClassForAmount(rBets[id].amt);
             
             let chipHTML = `<div class="r-placed-chip ${cClass} ${chipClass}" style="top:${posTop}; left:${posLeft};">${sym}${formatChipValue(rBets[id].amt)}</div>`;
@@ -597,7 +954,7 @@
         }
 
         async function spinRoulette() {
-            if(Object.keys(rBets).length === 0) return alert("盤面をタップしてチップを置いてください");
+            if(Object.keys(rBets).length === 0) return alert("ç¤é¢ãã¿ãããã¦ããããç½®ãã¦ãã ãã");
             isAnim = true; document.getElementById('r-spin-btn').disabled = true;
             document.getElementById('game-result').innerText = "Spinning...";
             
@@ -640,7 +997,7 @@
                 }
             }
 
-            let sym = state.cur === 'USD' ? '$' : '€';
+            let sym = state.cur === 'USD' ? '$' : 'â¬';
             if(winDisp > 0) {
                 addWin(getUsd(winDisp)); document.getElementById('game-result').innerText = `Result: ${res} - WIN ${sym}${formatChipValue(winDisp)}!`;
             } else {
@@ -660,7 +1017,7 @@
 
         function clearRoulette() {
             if(isAnim) return;
-            for(let key in rBets) addWin(getUsd(rBets[key].amt)); 
+            for(let key in rBets) refundBet(getUsd(rBets[key].amt)); 
             rBets = {}; document.querySelectorAll('.r-placed-chip').forEach(c => c.remove());
         }
 
@@ -674,14 +1031,14 @@
             if(isAnim) return;
             if(deduct(getUsd(selChip))) {
                 bjBets[type] += selChip;
-                let sym = state.cur === 'USD' ? '$' : '€';
+                let sym = state.cur === 'USD' ? '$' : 'â¬';
                 document.getElementById('bj-val-' + type).innerHTML = `<div class="placed-chip ${getChipClassForAmount(bjBets[type])}">${sym}${formatChipValue(bjBets[type])}</div>`;
-            } else alert("残高不足です");
+            } else alert("æ®é«ä¸è¶³ã§ã");
         }
         
         function clearBjBets() { 
             if(isAnim) return; 
-            for(let key in bjBets) { addWin(getUsd(bjBets[key])); bjBets[key] = 0; }
+            for(let key in bjBets) { refundBet(getUsd(bjBets[key])); bjBets[key] = 0; }
             ['main','pp','plus3'].forEach(id => document.getElementById('bj-val-'+id).innerHTML = ''); 
         }
         
@@ -693,7 +1050,7 @@
         
         function bjCardStr(c, hidden=false) {
             if(hidden) return '<div class="card-wrapper"><div class="card-base card-back"></div></div>';
-            let n = c%13+1, s = ['♠','♥','♦','♣'][Math.floor(c/13)]; let col = (s==='♥'||s==='♦')?'red':'';
+            let n = c%13+1, s = ['â ','â¥','â¦','â£'][Math.floor(c/13)]; let col = (s==='â¥'||s==='â¦')?'red':'';
             let d = n===1?'A':n===11?'J':n===12?'Q':n===13?'K':n;
             return `<div class="card-wrapper"><div class="card-base ${col}">${d}<br><span style="font-size:0.7em">${s}</span></div></div>`;
         }
@@ -711,9 +1068,16 @@
         }
         
         function startBj() {
-            if(bjBets.main <= 0) return alert("MAINエリアにベットしてください");
+            if(bjBets.main <= 0) return alert("MAINã¨ãªã¢ã«ããããã¦ãã ãã");
             isAnim = true; document.getElementById('bj-start-controls').style.display = 'none'; document.getElementById('game-result').innerText = "";
-            bjDeck = Array.from({length: 52 * 6}, (_, i) => i % 52).sort(() => Math.random() - 0.5);
+            
+            // Fisher-Yates shuffle
+            bjDeck = Array.from({length: 52 * 6}, (_, i) => i % 52);
+            for (let i = bjDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [bjDeck[i], bjDeck[j]] = [bjDeck[j], bjDeck[i]];
+            }
+            
             pHand = [bjDeck.pop(), bjDeck.pop()]; dHand = [bjDeck.pop(), bjDeck.pop()]; renderBj(true);
             
             let sideWin = 0; let sideMsgs = [];
@@ -743,7 +1107,7 @@
                 else if (isFlush) { sideWin += bjBets.plus3 * 6; sideMsgs.push("Flush (x5)"); }
             }
             if (sideWin > 0) {
-                addWin(getUsd(sideWin)); let sym = state.cur === 'USD' ? '$' : '€';
+                addWin(getUsd(sideWin)); let sym = state.cur === 'USD' ? '$' : 'â¬';
                 document.getElementById('game-result').innerHTML = `<span style="color:#00e5ff; font-size:1.4rem;">${sideMsgs.join(' / ')} (+${sym}${formatChipValue(sideWin)})</span>`;
             }
             
@@ -759,9 +1123,9 @@
         }
 
         function doubleDownBj() {
-            if(!deduct(getUsd(bjBets.main))) return alert("残高不足です");
+            if(!deduct(getUsd(bjBets.main))) return alert("æ®é«ä¸è¶³ã§ã");
             bjBets.main *= 2; 
-            let sym = state.cur === 'USD' ? '$' : '€';
+            let sym = state.cur === 'USD' ? '$' : 'â¬';
             document.getElementById('bj-val-main').innerHTML = `<div class="placed-chip ${getChipClassForAmount(bjBets.main)}">${sym}${formatChipValue(bjBets.main)}</div>`;
             pHand.push(bjDeck.pop()); renderBj(true); document.getElementById('bj-acts').style.display = 'none';
             if(bjVal(pHand)>21) setTimeout(() => endBj(), 1000); else setTimeout(() => standBj(), 1000);
@@ -799,30 +1163,30 @@
         }
 
         // ==========================================
-        // CRAPS (Hold & Release Throw + Info Accordion)
+        // CRAPS
         // ==========================================
         let cPoint = 0, crapsBets = { Pass:0, DontPass:0 };
         let chargeTimer; let rollPower = 0; let isCharging = false;
         
         function placeCrapsBet(type) {
-            if(cPoint!==0) return alert("ロール中はベット追加できません");
+            if(cPoint!==0) return alert("ã­ã¼ã«ä¸­ã¯ãããè¿½å ã§ãã¾ãã");
             if(deduct(getUsd(selChip))) { 
                 crapsBets[type] += selChip; 
-                let sym = state.cur === 'USD' ? '$' : '€';
+                let sym = state.cur === 'USD' ? '$' : 'â¬';
                 document.getElementById('cr-val-'+type).innerHTML = `<div class="placed-chip ${getChipClassForAmount(crapsBets[type])}">${sym}${formatChipValue(crapsBets[type])}</div>`;
-            } else alert("残高不足です");
+            } else alert("æ®é«ä¸è¶³ã§ã");
         }
         
         function clearCrapsBets() {
             if(cPoint!==0) return;
-            addWin(getUsd(crapsBets.Pass)); addWin(getUsd(crapsBets.DontPass));
+            refundBet(getUsd(crapsBets.Pass)); refundBet(getUsd(crapsBets.DontPass));
             crapsBets = {Pass:0, DontPass:0}; document.getElementById('cr-val-Pass').innerHTML=''; document.getElementById('cr-val-DontPass').innerHTML='';
         }
 
         function startCharge(e) {
             if(e) e.preventDefault();
             if(isAnim) return;
-            if(crapsBets.Pass===0 && crapsBets.DontPass===0) return alert("先にチップをベットエリアに置いてください");
+            if(crapsBets.Pass===0 && crapsBets.DontPass===0) return alert("åã«ãããããããã¨ãªã¢ã«ç½®ãã¦ãã ãã");
             isCharging = true; rollPower = 0;
             document.getElementById('cr-btn').innerText = "POWER...!";
             chargeTimer = setInterval(() => {
@@ -852,7 +1216,7 @@
             
             let d1El = document.getElementById('cr-dice1');
             let d2El = document.getElementById('cr-dice2');
-            const emojis = ['⚀','⚁','⚂','⚃','⚄','⚅'];
+            const emojis = ['â','â','â','â','â','â'];
             
             let rolls = Math.floor(pwr / 10) + 10; 
             let d1, d2;
@@ -934,7 +1298,7 @@
         }
 
         function updateVpLcdMsg() { 
-            let sym = state.cur === 'USD' ? '$' : '€';
+            let sym = state.cur === 'USD' ? '$' : 'â¬';
             let totalBet = vpBaseBet * vpBetLevel;
             document.getElementById('vp-lcd').innerText = `BET: ${sym}${formatChipValue(totalBet)} | PRESS DEAL`; 
         }
@@ -956,7 +1320,7 @@
         }
 
         function changeVpBaseBet(val) {
-            if(vpPhase !== 0) return alert("プレイ中は変更できません");
+            if(vpPhase !== 0) return alert("ãã¬ã¤ä¸­ã¯å¤æ´ã§ãã¾ãã");
             vpBaseBet = parseInt(val); vpBetLevel = 1; renderVpPaytable(); updateVpLcdMsg();
         }
 
@@ -972,7 +1336,7 @@
             let html = '';
             for(let i=0; i<5; i++) {
                 if(vpHand[i] !== undefined) {
-                    let n = vpHand[i] % 13 + 1; let s = ['♠','♥','♦','♣'][Math.floor(vpHand[i] / 13)]; let col = (s === '♥' || s === '♦') ? 'red' : '';
+                    let n = vpHand[i] % 13 + 1; let s = ['â ','â¥','â¦','â£'][Math.floor(vpHand[i] / 13)]; let col = (s === 'â¥' || s === 'â¦') ? 'red' : '';
                     let d = n === 1 ? 'A' : n === 11 ? 'J' : n === 12 ? 'Q' : n === 13 ? 'K' : n;
                     html += `<div class="vp-card-col"><div class="vp-hold-text">${vpHold[i]?'HOLD':''}</div><div class="vp-card ${col}" onclick="toggleHold(${i})">${d}<br><span style="font-size:0.5em">${s}</span></div></div>`;
                 } else {
@@ -1001,8 +1365,14 @@
             if(!deduct(usd)) { document.getElementById('vp-lcd').innerText = "INSUFFICIENT FUNDS"; return; }
             
             vpPhase = 1; vpHold = [false, false, false, false, false];
-            document.getElementById('vp-lcd').innerText = "SELECT CARDS TO HOLD";
-            vpDeck = Array.from({length: 52}, (_, i) => i).sort(() => Math.random() - 0.5);
+            
+            // Fisher-Yates shuffle
+            vpDeck = Array.from({length: 52}, (_, i) => i);
+            for (let i = vpDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [vpDeck[i], vpDeck[j]] = [vpDeck[j], vpDeck[i]];
+            }
+            
             vpHand = [vpDeck.pop(), vpDeck.pop(), vpDeck.pop(), vpDeck.pop(), vpDeck.pop()];
             renderVpCards(); document.getElementById('vp-btn-deal').innerText = "DRAW";
         }
@@ -1012,7 +1382,7 @@
             for(let i=0; i<5; i++) { if(!vpHold[i]) vpHand[i] = vpDeck.pop(); }
             renderVpCards();
             
-            let result = evaluatePokerHand(vpHand); let sym = state.cur === 'USD' ? '$' : '€';
+            let result = evaluatePokerHand(vpHand); let sym = state.cur === 'USD' ? '$' : 'â¬';
             
             if(result.mult > 0) {
                 let payoutMult = (vpBetLevel === vpMaxLevel && result.name === "ROYAL FLUSH") ? 800 : result.mult;
@@ -1091,7 +1461,7 @@
                         <div style="width:100%; max-width:500px; margin: 0 auto 20px auto; text-align:left;">
                             <details style="background:rgba(0,0,0,0.6); border:1px solid #555; border-radius:8px; padding:10px;">
                                 <summary style="color:var(--gold-light); cursor:pointer; font-weight:bold; outline:none; text-align:center; list-style:none;">
-                                    📊 サイドベット配当表 (PAYTABLE) ▼
+                                    ð ãµã¤ããããéå½è¡¨ (PAYTABLE) â¼
                                 </summary>
                                 <div style="display:flex; gap:15px; margin-top:15px; flex-wrap:wrap; justify-content:center;">
                                     <table style="border-collapse:collapse; color:#fff; font-size:0.85rem; background:#111; border:1px solid #444; flex:1; min-width:140px;">
@@ -1161,7 +1531,7 @@
                 wheelGrad = wheelGrad.slice(0, -1);
 
                 let tHTML = `<div class="r-cell" style="grid-row: 1 / span 3; grid-column: 1; border-top-left-radius: 40px; border-bottom-left-radius: 40px;" onclick="placeRouletteBet(event, 'zero', 0, this)">
-                                <div class="r-zero-oval">0</div>
+                                <div class="r-zero-oval"><span class="r-num-txt">0</span></div>
                              </div>`;
                 
                 for(let i=1; i<=36; i++) {
@@ -1169,7 +1539,7 @@
                     let gridRow = 3 - (i - 1) % 3;
                     let gridCol = Math.ceil(i / 3) + 1;
                     tHTML += `<div class="r-cell" style="grid-row: ${gridRow}; grid-column: ${gridCol};" onclick="placeRouletteBet(event, 'num', '${i}', this)">
-                                <div class="r-num-oval ${ovalClass}">${i}</div>
+                                <div class="r-num-oval ${ovalClass}"><span class="r-num-txt">${i}</span></div>
                               </div>`;
                 }
                 
@@ -1188,8 +1558,8 @@
                 tHTML += `
                     <div class="r-cell r-cell-txt" style="grid-row: 5; grid-column: 2 / span 2; border-bottom-left-radius: 8px;" onclick="placeRouletteBet(event, 'low', 'low', this)">1 TO 18</div>
                     <div class="r-cell r-cell-txt" style="grid-row: 5; grid-column: 4 / span 2;" onclick="placeRouletteBet(event, 'even', 'even', this)">EVEN</div>
-                    <div class="r-cell r-cell-txt r-red-oval" style="grid-row: 5; grid-column: 6 / span 2; border-radius:0; border:1px solid rgba(255,255,255,0.6);" onclick="placeRouletteBet(event, 'red', 'red', this)">RED</div>
-                    <div class="r-cell r-cell-txt r-black-oval" style="grid-row: 5; grid-column: 8 / span 2; border-radius:0; border:1px solid rgba(255,255,255,0.6);" onclick="placeRouletteBet(event, 'black', 'black', this)">BLACK</div>
+                    <div class="r-cell r-red-oval" style="grid-row: 5; grid-column: 6 / span 2; border-radius:0; border:1px solid rgba(255,255,255,0.6);" onclick="placeRouletteBet(event, 'red', 'red', this)">RED</div>
+                    <div class="r-cell r-black-oval" style="grid-row: 5; grid-column: 8 / span 2; border-radius:0; border:1px solid rgba(255,255,255,0.6);" onclick="placeRouletteBet(event, 'black', 'black', this)">BLACK</div>
                     <div class="r-cell r-cell-txt" style="grid-row: 5; grid-column: 10 / span 2;" onclick="placeRouletteBet(event, 'odd', 'odd', this)">ODD</div>
                     <div class="r-cell r-cell-txt" style="grid-row: 5; grid-column: 12 / span 2; border-bottom-right-radius: 8px;" onclick="placeRouletteBet(event, 'high', 'high', this)">19 TO 36</div>
                 `;
@@ -1199,22 +1569,22 @@
                         <div style="width:100%; max-width:600px; margin: 0 auto 10px auto; text-align:left;">
                             <details style="background:rgba(0,0,0,0.6); border:1px solid #555; border-radius:8px; padding:10px;">
                                 <summary style="color:var(--gold-light); cursor:pointer; font-weight:bold; outline:none; text-align:center; list-style:none;">
-                                    📊 ルーレット配当表 (PAYTABLE) ▼
+                                    ð ã«ã¼ã¬ããéå½è¡¨ (PAYTABLE) â¼
                                 </summary>
                                 <table style="width:100%; border-collapse:collapse; color:#fff; font-size:0.85rem; margin-top:10px; background:#111; border:1px solid #444;">
-                                    <tr style="background:#222; color:#aaa;"><th style="padding:6px; border-bottom:1px solid #444;">ベット種類</th><th style="padding:6px; border-bottom:1px solid #444;">対象</th><th style="padding:6px; border-bottom:1px solid #444; text-align:right;">配当</th></tr>
-                                    <tr><td style="padding:5px; border-bottom:1px solid #333;">ストレートアップ</td><td style="padding:5px; border-bottom:1px solid #333;">数字1点 (0〜36)</td><td style="padding:5px; border-bottom:1px solid #333; color:var(--gold); text-align:right;">36倍</td></tr>
-                                    <tr><td style="padding:5px; border-bottom:1px solid #333;">スプリット</td><td style="padding:5px; border-bottom:1px solid #333;">隣り合う数字2点</td><td style="padding:5px; border-bottom:1px solid #333; color:var(--gold); text-align:right;">18倍</td></tr>
-                                    <tr><td style="padding:5px; border-bottom:1px solid #333;">ストリート / 列賭け / ダズン</td><td style="padding:5px; border-bottom:1px solid #333;">指定の3点 / 12点</td><td style="padding:5px; border-bottom:1px solid #333; color:var(--gold); text-align:right;">12倍 / 3倍</td></tr>
-                                    <tr><td style="padding:5px; border-bottom:1px solid #333;">コーナー / バスケット</td><td style="padding:5px; border-bottom:1px solid #333;">交差する数字4点</td><td style="padding:5px; border-bottom:1px solid #333; color:var(--gold); text-align:right;">9倍</td></tr>
-                                    <tr><td style="padding:5px; border-bottom:1px solid #333;">シックスライン</td><td style="padding:5px; border-bottom:1px solid #333;">ストリート2本分 (6点)</td><td style="padding:5px; border-bottom:1px solid #333; color:var(--gold); text-align:right;">6倍</td></tr>
-                                    <tr><td style="padding:5px;">赤黒 / 奇数偶数 / ハイロー</td><td style="padding:5px;">指定のカラーなど18点</td><td style="padding:5px; color:var(--gold); text-align:right;">2倍</td></tr>
+                                    <tr style="background:#222; color:#aaa;"><th style="padding:6px; border-bottom:1px solid #444;">ãããç¨®é¡</th><th style="padding:6px; border-bottom:1px solid #444;">å¯¾è±¡</th><th style="padding:6px; border-bottom:1px solid #444; text-align:right;">éå½</th></tr>
+                                    <tr><td style="padding:5px; border-bottom:1px solid #333;">ã¹ãã¬ã¼ãã¢ãã</td><td style="padding:5px; border-bottom:1px solid #333;">æ°å­1ç¹ (0ã36)</td><td style="padding:5px; border-bottom:1px solid #333; color:var(--gold); text-align:right;">36å</td></tr>
+                                    <tr><td style="padding:5px; border-bottom:1px solid #333;">ã¹ããªãã</td><td style="padding:5px; border-bottom:1px solid #333;">é£ãåãæ°å­2ç¹</td><td style="padding:5px; border-bottom:1px solid #333; color:var(--gold); text-align:right;">18å</td></tr>
+                                    <tr><td style="padding:5px; border-bottom:1px solid #333;">ã¹ããªã¼ã / åè³­ã / ããºã³</td><td style="padding:5px; border-bottom:1px solid #333;">æå®ã®3ç¹ / 12ç¹</td><td style="padding:5px; border-bottom:1px solid #333; color:var(--gold); text-align:right;">12å / 3å</td></tr>
+                                    <tr><td style="padding:5px; border-bottom:1px solid #333;">ã³ã¼ãã¼ / ãã¹ã±ãã</td><td style="padding:5px; border-bottom:1px solid #333;">äº¤å·®ããæ°å­4ç¹</td><td style="padding:5px; border-bottom:1px solid #333; color:var(--gold); text-align:right;">9å</td></tr>
+                                    <tr><td style="padding:5px; border-bottom:1px solid #333;">ã·ãã¯ã¹ã©ã¤ã³</td><td style="padding:5px; border-bottom:1px solid #333;">ã¹ããªã¼ã2æ¬å (6ç¹)</td><td style="padding:5px; border-bottom:1px solid #333; color:var(--gold); text-align:right;">6å</td></tr>
+                                    <tr><td style="padding:5px;">èµ¤é» / å¥æ°å¶æ° / ãã¤ã­ã¼</td><td style="padding:5px;">æå®ã®ã«ã©ã¼ãªã©18ç¹</td><td style="padding:5px; color:var(--gold); text-align:right;">2å</td></tr>
                                 </table>
                             </details>
                         </div>
 
                         <div class="r-wheel-frame">
-                            <div class="r-pointer">▼</div>
+                            <div class="r-pointer">â¼</div>
                             <div class="r-wheel-track">
                                 <div class="r-wheel-inner" id="r-wheel-inner" style="background: conic-gradient(${wheelGrad});">
                                     ${numHtml}
@@ -1241,19 +1611,19 @@
                         <div style="width:100%; max-width:500px; margin: 0 auto 20px auto; text-align:left;">
                             <details style="background:rgba(0,0,0,0.6); border:1px solid #555; border-radius:8px; padding:10px;">
                                 <summary style="color:var(--gold-light); cursor:pointer; font-weight:bold; outline:none; text-align:center;">
-                                    📊 クラップス ルール＆配当表 ▼
+                                    ð ã¯ã©ããã¹ ã«ã¼ã«ï¼éå½è¡¨ â¼
                                 </summary>
                                 <div style="color:#fff; font-size:0.85rem; margin-top:10px; line-height:1.5;">
-                                    <b>【ゲームの流れ】</b><br>
-                                    <b>① 第1フェーズ (POINT: OFF)</b><br>
-                                    ・<span style="color:#4caf50;">7 か 11</span> が出れば <b>PASS LINE の即勝利！</b><br>
-                                    ・<span style="color:#e53935;">2, 3, 12</span> が出れば負け。<br>
-                                    ・それ以外の数字が出ると、それが「ポイント(目標)」になり②へ。<br><br>
-                                    <b>② 第2フェーズ (POINT: ON)</b><br>
-                                    ・7 が出る前に、先ほど決まった<b>「ポイント」をもう一度出せば勝利！</b><br>
-                                    ・<span style="color:#e53935;">7</span> が先に出ると負け(7 Out)。<br>
+                                    <b>ãã²ã¼ã ã®æµãã</b><br>
+                                    <b>â  ç¬¬1ãã§ã¼ãº (POINT: OFF)</b><br>
+                                    ã»<span style="color:#4caf50;">7 ã 11</span> ãåºãã° <b>PASS LINE ã®å³åå©ï¼</b><br>
+                                    ã»<span style="color:#e53935;">2, 3, 12</span> ãåºãã°è² ãã<br>
+                                    ã»ããä»¥å¤ã®æ°å­ãåºãã¨ããããããã¤ã³ã(ç®æ¨)ãã«ãªãâ¡ã¸ã<br><br>
+                                    <b>â¡ ç¬¬2ãã§ã¼ãº (POINT: ON)</b><br>
+                                    ã»7 ãåºãåã«ãåã»ã©æ±ºã¾ã£ã<b>ããã¤ã³ãããããä¸åº¦åºãã°åå©ï¼</b><br>
+                                    ã»<span style="color:#e53935;">7</span> ãåã«åºãã¨è² ã(7 Out)ã<br>
                                     <hr style="border:0; border-top:1px solid #444; margin:8px 0;">
-                                    <b>【配当】</b> PASS LINE / DON'T PASS ともに <b>2倍 (1:1)</b>
+                                    <b>ãéå½ã</b> PASS LINE / DON'T PASS ã¨ãã« <b>2å (1:1)</b>
                                 </div>
                             </details>
                         </div>
@@ -1261,8 +1631,8 @@
                         <h2 id="cr-point" style="color:#aaa; border:none; margin-bottom:0;">POINT: <span style="color:#fff;">OFF</span></h2>
                         
                         <div id="craps-table" style="position:relative; width:100%; height:180px; background:radial-gradient(circle, #0a4f1e, #05260e); border:4px solid #3d2314; border-radius:12px; margin:20px 0; overflow:hidden; box-shadow:inset 0 0 20px rgba(0,0,0,0.8);">
-                            <div id="cr-dice1" style="position:absolute; top:40%; left:30%; font-size:4rem; color:white; transition:all 0.1s cubic-bezier(0.25, 1, 0.5, 1); text-shadow:2px 2px 5px #000;">⚀</div>
-                            <div id="cr-dice2" style="position:absolute; top:40%; left:50%; font-size:4rem; color:white; transition:all 0.1s cubic-bezier(0.25, 1, 0.5, 1); text-shadow:2px 2px 5px #000;">⚀</div>
+                            <div id="cr-dice1" style="position:absolute; top:40%; left:30%; font-size:4rem; color:white; transition:all 0.1s cubic-bezier(0.25, 1, 0.5, 1); text-shadow:2px 2px 5px #000;">â</div>
+                            <div id="cr-dice2" style="position:absolute; top:40%; left:50%; font-size:4rem; color:white; transition:all 0.1s cubic-bezier(0.25, 1, 0.5, 1); text-shadow:2px 2px 5px #000;">â</div>
                             <div id="cr-sum" style="position:absolute; bottom:10px; left:50%; transform:translateX(-50%); font-size:2rem; font-weight:900; color:var(--gold-light); text-shadow:0 2px 5px #000;"></div>
                         </div>
                         
